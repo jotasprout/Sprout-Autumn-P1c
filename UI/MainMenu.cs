@@ -40,14 +40,16 @@ namespace UI
             string userName = Console.ReadLine();
             Console.WriteLine("Password, too: ");
             string password = Console.ReadLine();
-            User userKnocking = new AuthServices().LoginUser(userName, password);
+            Console.WriteLine("userName: " + userName + ", password: " + password);
+            Environment.Exit(0);
+            //User userKnocking = new AuthServices().LoginUser(userName, password);
         }
 
         public void DisplayRegisterUI()
         {
             Console.WriteLine("Choose a userName");
             string maybeUserName = Console.ReadLine();
-            Console.WriteLine("Your typed " + maybeUserName + ".");
+            Console.WriteLine("You typed " + maybeUserName + ".");
             Console.WriteLine("Type a password.");
             string maybePassword = Console.ReadLine();
             // Console.WriteLine("First Name: ");
