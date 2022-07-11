@@ -14,7 +14,7 @@ namespace DataAccess;
 // viewing all tickets
 
 
-public class TicketDAO
+public class TicketRepository
 {
     public string thoseAll = "select * from AutumnERS.tickets;";
 

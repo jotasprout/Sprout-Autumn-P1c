@@ -15,5 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj" />
     <ProjectReference Include="..\Sensitive\Sensitive.csproj" />
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+    <ProjectReference Include="..\CustomExceptions\CustomExceptions.csproj" />
   </ItemGroup>
 </Project>
