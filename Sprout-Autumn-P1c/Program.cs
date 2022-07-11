@@ -4,10 +4,10 @@ using DataAccess;
 //MainMenu intro = new MainMenu();
 //intro.Begin();
 
-// UserRepository peepIWant = new UserRepository();
-// Console.WriteLine("Which user do you want?");
-// string userIWant = Console.ReadLine();
-// peepIWant.GetUserByUserName(userIWant);
+UserRepository peepIWant = new UserRepository();
+Console.WriteLine("Which user do you want?");
+string userIWant = Console.ReadLine();
+peepIWant.GetUserByUserName(userIWant);
 
 Console.WriteLine("Here is a list of all users:");
 UserRepository peeps = new UserRepository();
