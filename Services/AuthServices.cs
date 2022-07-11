@@ -1,5 +1,4 @@
-﻿using Sensitive;
-using Models;
+﻿using Models;
 using DataAccess;
 using CustomExceptions;
 
@@ -26,16 +25,16 @@ public class AuthServices
                 // If user is a Manager, display Manager Menu
                 Console.WriteLine("Welcome, " + userName + ".");
             }
-            else if
-                {
+            else
+            {
                 // throw custom exception if passwords don't match
                 throw new InvalidCredentials();
             }
             // throw custom exception if user doesn't exist
-            else
-            {
-                throw new ResourceNotFound();
-            }
+            // if (user.userName)
+            // {
+            //     throw new ResourceNotFound();
+            // }
 
         }
         // catch any exception thrown from DataAccess
