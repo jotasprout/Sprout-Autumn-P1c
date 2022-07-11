@@ -1,5 +1,5 @@
 ﻿using Models;
-using Services;
+// using Services;
 using System.Data.SqlClient;
 
 namespace DataAccess;
@@ -16,6 +16,8 @@ namespace DataAccess;
 
 public class TicketRepository
 {
+    public static string connectionString = "Server=tcp:autumn-server.database.windows.net,1433;Initial Catalog=AutumnDB;Persist Security Info=False;User ID=supremeadmin;Password=" + SensitiveVariables.dbpassword + ";MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+
     public string thoseAll = "select * from AutumnERS.tickets;";
 
     public List<Ticket> GetTickets(string those)
@@ -23,7 +25,7 @@ public class TicketRepository
 
         List<Ticket> tickets = new List<Ticket>();
 
-        SqlConnection makeConnection = new SqlConnection(AuthServices.connectionString);
+        SqlConnection makeConnection = new SqlConnection(connectionString);
 
         SqlCommand getEveryTicket = new SqlCommand(those, makeConnection);
 

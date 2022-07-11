@@ -9,12 +9,14 @@
   <ItemGroup>
     <None Remove="System.Data.SqlClient" />
   </ItemGroup>
+  
   <ItemGroup>
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
+
   <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj" />
     <ProjectReference Include="..\Sensitive\Sensitive.csproj" />
     <ProjectReference Include="..\CustomExceptions\CustomExceptions.csproj" />
-    <ProjectReference Include="..\Services\Services.csproj" />
   </ItemGroup>
 </Project>

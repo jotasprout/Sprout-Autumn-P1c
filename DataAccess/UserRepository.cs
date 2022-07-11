@@ -1,5 +1,5 @@
 ﻿using Models;
-using Services;
+// using Services;
 using System;
 using System.Data.SqlClient;
 
@@ -11,14 +11,14 @@ namespace DataAccess
 
         public string thoseAll = "select * from AutumnERS.users;";
 
-
+        public static string connectionString = "Server=tcp:autumn-server.database.windows.net,1433;Initial Catalog=AutumnDB;Persist Security Info=False;User ID=supremeadmin;Password=" + SensitiveVariables.dbpassword + ";MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         public List<User> GetUsers(string those)
         {
 
             List<User> users = new List<User>();
 
-            SqlConnection makeConnection = new SqlConnection(AuthServices.connectionString);
+            SqlConnection makeConnection = new SqlConnection(connectionString);
 
             SqlCommand getEveryUser = new SqlCommand(those, makeConnection);
 
@@ -63,7 +63,7 @@ namespace DataAccess
 
             string getThisUser = "select * from AutumnERS.users where userName ='" + userWanted + "';";
 
-            SqlConnection makeConnection = new SqlConnection(AuthServices.connectionString);
+            SqlConnection makeConnection = new SqlConnection(connectionString);
 
             SqlCommand goGetThisUser = new SqlCommand(getThisUser, makeConnection);
 
