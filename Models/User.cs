@@ -46,6 +46,8 @@
             this.password = password;
         }
 
+        public User (){}
+
         public override string ToString()
         {
             return "ID: " + this.userID +

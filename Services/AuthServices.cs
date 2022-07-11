@@ -43,7 +43,7 @@ public class AuthServices
         {
             // if exception caught, throw to the UI layer 
             Console.WriteLine(e.Message);
-            //return new User();
+            return new User();
         }
 
     }

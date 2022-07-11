@@ -61,7 +61,7 @@ namespace DataAccess
         {
 
             // List<User> thisUser = new List<User>();
-            User thisUser = new User(userWanted);
+            User thisUser = new User();
 
             string getThisUser = "select * from AutumnERS.users where userName ='" + userWanted + "';";
 
@@ -76,7 +76,7 @@ namespace DataAccess
                 while (reader.Read())
                 {
                     Console.WriteLine("\t{0}\t{1}\t{2}\t{3}", reader[0], reader[1], reader[2], reader[3]);
-                    thisUser = new User((int)reader[0], (string)reader[1], (string)reader[2], (string)reader[3]);
+                    thisUser = new User((int)reader[0], (string)reader[1], (string)reader[2], (userRole)reader[3]);
                 }
                 reader.Close();
                 makeConnection.Close();
