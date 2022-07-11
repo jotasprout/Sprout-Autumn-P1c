@@ -1,6 +1,4 @@
-﻿namespace UI;
-
-using DataAccess;
+﻿using UI;
 
 
 MainMenu intro = new MainMenu();

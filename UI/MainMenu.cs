@@ -94,5 +94,3 @@ namespace UI
         // Console.WriteLine("[5] View Tickets by Status");
     }
 }
-}
-
