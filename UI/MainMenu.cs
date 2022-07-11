@@ -40,8 +40,7 @@ namespace UI
             string userName = Console.ReadLine();
             Console.WriteLine("Password, too: ");
             string password = Console.ReadLine();
-            Console.WriteLine("Welcome, " + userName + ".");
-            Environment.Exit(0);
+            User userKnocking = new AuthServices().LoginUser(userName, password);
         }
 
         public void DisplayRegisterUI()
