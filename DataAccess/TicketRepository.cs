@@ -21,8 +21,6 @@ public class TicketRepository
 
     public string thoseAll = "select * from AutumnERS.tickets;";
 
-    public string TicketsByUserName = "select * from AutumnERS.tickets;"
-
     public List<Ticket> GetTickets(string those)
     {
 
@@ -59,7 +57,7 @@ public class TicketRepository
         return allTickets;
     }
 
-    public List<Ticket> GetTicketsByUserName(userIWantTicketsFor)
+    public List<Ticket> GetTicketsByUserName(string userIWantTicketsFor)
     {
         string TicketsByUserName = "select * from AutumnERS.tickets where userName='" + userIWantTicketsFor + "';";
         List<Ticket> allTicketsByUserName = new List<Ticket>();
