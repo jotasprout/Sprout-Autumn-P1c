@@ -1,6 +1,7 @@
 ﻿using System;
 using Services;
 using Models;
+using DataAccess;
 
 namespace UI
 {
@@ -129,11 +130,10 @@ namespace UI
                     Console.WriteLine("Show prompts for creating a ticket.");
                     break;
                 case "4": // View Tickets by UserName
-                    Console.WriteLine("Run getTicketsByUserName using this userName.");
-                    TicketRepository TicketsFromPeepIWant = new TicketRepository();
                     Console.WriteLine("Which user do you want?");
                     string userIWantTicketsFrom = Console.ReadLine();
-                    userIWantTicketsFrom.GetTicketsByUserName(userIWant);
+                    TicketRepository TicketsFromPeepIWant = new TicketRepository();
+                    TicketsFromPeepIWant.GetTicketsByUserName(userIWantTicketsFrom);
                     break;   
                 case "5": // View Tickets by Status
                     Console.WriteLine("Ask for status.");
