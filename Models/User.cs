@@ -59,22 +59,22 @@
 
         public User(){}
 
-        public string userRoleToString(userRole userRoleNotString)
-        {
-            if(userRoleNotString == userRole.Employee)
-            {
-                return "Employee";
-            }
-            else { return "Manager"; }
-        }
+        // public string userRoleToString(userRole userRoleNotString)
+        // {
+        //     if(userRoleNotString == userRole.Employee)
+        //     {
+        //         return "employee";
+        //     }
+        //     else { return "manager"; }
+        // }
 
         public int userRoleToInt(string userRoleNotInt)
         {
-           if(userRoleNotInt == "Manager")
+           if(userRoleNotInt == "employee")
             {
-                return 1;
+                return 0;
             }
-            else { return 0; }
+            else { return 1; }
         }        
 
         public override string ToString()
