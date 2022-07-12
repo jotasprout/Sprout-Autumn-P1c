@@ -130,15 +130,23 @@ namespace UI
                     break;
                 case "4": // View Tickets by UserName
                     Console.WriteLine("Run getTicketsByUserName using this userName.");
+                    // TicketRepository TicketsFromPeepIWant = new TicketRepository();
+                    // Console.WriteLine("Which user do you want?");
+                    // string userIWantTicketsFrom = Console.ReadLine();
+                    // userIWantTicketsFrom.GetTicketsByUserName(userIWant);
                     break;   
                 case "5": // View Tickets by Status
                     Console.WriteLine("Ask for status.");
                     break;
                 case "6": // View Entire User List
-                    Console.WriteLine("show Entire User List.");
+                    Console.WriteLine("Here is a list of all users:");
+                    UserRepository peeps = new UserRepository();
+                    peeps.GetAllUsers();
                     break;
                 case "7": // View Entire Ticket List
-                    Console.WriteLine("Show Entire Ticket List.");
+                    Console.WriteLine("Here is a list of all Tickets:");
+                    TicketRepository tickets = new TicketRepository();
+                    tickets.GetAllTickets();
                     break;                                      
                 default:
                     Console.WriteLine("You're a dummy.");
