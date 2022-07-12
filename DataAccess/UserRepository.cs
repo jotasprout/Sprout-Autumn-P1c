@@ -1,6 +1,7 @@
 ﻿using Models;
 using Sensitive;
 // using Services;
+using CustomExceptions;
 using System;
 using System.Data.SqlClient;
 
@@ -97,7 +98,7 @@ namespace DataAccess
 
         public User GetUserByUserID()
         {
-            return new User();
+            throw new ResourceNotFound();
         }
 
     }

@@ -1,3 +1,4 @@
+using CustomExceptions;
 using System.Data.SqlClient;
 
 public class ConnectionFactory
@@ -5,14 +6,14 @@ public class ConnectionFactory
 
     public static ConnectionFactory GetInstance()
     {
-        return new User();
+        throw new ResourceNotFound();
     }
 
 
 
     public SqlConnection GetConnection()
     {
-        return new User();
+        throw new ResourceNotFound();
     }
 
 }

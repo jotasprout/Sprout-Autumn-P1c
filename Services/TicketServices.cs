@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Models;
+using CustomExceptions;
+using System;
+
 namespace Services
 {
     public class TicketServices
@@ -6,20 +9,20 @@ namespace Services
         
         public User GetUserByUserName(string userWanted)
         {
-            return new User();
+            throw new ResourceNotFound();
         }
 
 
 
         public User GetUserByUserID(string userWanted)
         {
-            return new User();
+            throw new ResourceNotFound();
         }
 
 
         public User GetAllUsers(string userWanted)
         {
-            return new User();
+            throw new ResourceNotFound();
         }
 
 

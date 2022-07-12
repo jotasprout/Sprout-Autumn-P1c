@@ -1,5 +1,6 @@
 ﻿using Models;
 using Sensitive;
+using CustomExceptions;
 // using Services;
 using System.Data.SqlClient;
 
@@ -79,8 +80,7 @@ public class TicketRepository
         // List<Ticket> allTicketsByUserName = new List<Ticket>();
         // GetTickets(TicketsByUserName);
         // return allTicketsByUserName;
-        return new List<Ticket>();
-    }
+        throw new ResourceNotFound();    }
 
     public List<Ticket> CreateTicket()
     {
@@ -88,7 +88,7 @@ public class TicketRepository
         // List<Ticket> allTicketsByUserName = new List<Ticket>();
         // GetTickets(TicketsByUserName);
         // return allTicketsByUserName;
-        return new List<Ticket>();
+        throw new ResourceNotFound();
     }
 
     // Get all tickets by userID
@@ -99,7 +99,7 @@ public class TicketRepository
         // List<Ticket> allTicketsByUserName = new List<Ticket>();
         // GetTickets(TicketsByUserName);
         // return allTicketsByUserName;
-        return new List<Ticket>();
+        throw new ResourceNotFound();
     }
 
     // GET TICKET BY STATUS

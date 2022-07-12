@@ -48,6 +48,7 @@ namespace UI
             // Console.WriteLine("userName: " + userName + ", password: " + password);
             // Environment.Exit(0);
             User userKnocking = new AuthServices().LoginUser(userName, password);
+            
             if (userKnocking.userRole == userRole.Manager)
             {
                 // If user is a Manager, display Manager Menu
@@ -178,7 +179,7 @@ namespace UI
                     Console.WriteLine("Show prompts for creating a ticket.");
                     break;
                 case "2": // View
-                    Console.WriteLine("Run getTicketsByUserName using this userName.");
+                    Console.WriteLine("Tickets submitted by .");
                     break;
                 default:
                     Console.WriteLine("You're a dummy.");

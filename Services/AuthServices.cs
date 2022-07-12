@@ -49,7 +49,7 @@ public class AuthServices
     public User RegisterUser()
     {
         // will use CreateUser
-        return new User();
+        throw new ResourceNotFound();
     }
 
 }

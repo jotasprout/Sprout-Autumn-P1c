@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Models;
+using CustomExceptions;
+using System;
+
 namespace Services
 {
     public class UserServices
@@ -6,7 +9,7 @@ namespace Services
 
         public List<Ticket> CreateTicket()
         {
-            return new List<Ticket>();
+            throw new ResourceNotFound();
         }
 
         // UPDATE/process = approve or deny 
@@ -17,31 +20,31 @@ namespace Services
 
         public List<Ticket> GetTicketsByTicketID()
         {
-            return new List<Ticket>();
+            throw new ResourceNotFound();
         }
 
         public List<Ticket> GetMyTickets()
         {
-            return new List<Ticket>();
+            throw new ResourceNotFound();
         }
 
         public List<Ticket> FilterTicketsByCost()
         {
-            return new List<Ticket>();
+            throw new ResourceNotFound();
         }               
 
         // Get all tickets by userID
 
         public List<Ticket> GetTicketsByUserID()
         {
-            return new List<Ticket>();
+            throw new ResourceNotFound();
         }
 
         // GET TICKET BY STATUS
 
         public List<Ticket> GetTicketsByStatus()
         {
-            return new List<Ticket>();
+            throw new ResourceNotFound();
         }
         
     }
