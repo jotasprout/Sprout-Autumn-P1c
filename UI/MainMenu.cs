@@ -48,6 +48,7 @@ namespace UI
             if (userKnocking.userRole == userRole.Manager)
             {
                 Console.WriteLine("Show Manager stuff.");
+                DisplayManagerMenu();
             }
             else {
                 DisplayEmployeeMenu();
@@ -100,11 +101,52 @@ namespace UI
         // Console.WriteLine("[1] Resolve Tickets");
 
         // RESOLVE TICKETS MENU
-        // Console.WriteLine("[1] View Entire User List");
-        // Console.WriteLine("[2] View Entire Ticket List");  
+ 
         // Console.WriteLine("[3] View Ticket by TicketID");  
         // Console.WriteLine("[4] View Tickets by UserName");
         // Console.WriteLine("[5] View Tickets by Status");
+
+        public void DisplayManagerMenu()
+        {
+            Console.WriteLine("Choose a task:");
+            Console.WriteLine("[1] Create a New Ticket");
+            Console.WriteLine("[2] View My Tickets");
+            Console.WriteLine("[3] View Ticket by TicketID");  
+            Console.WriteLine("[4] View Tickets by UserName");
+            Console.WriteLine("[5] View Tickets by Status");
+            Console.WriteLine("[6] View Entire User List");
+            Console.WriteLine("[7] View Entire Ticket List");                         
+            string maybeTask = Console.ReadLine();
+            switch (maybeTask)
+            {
+                case "1": // Create
+                    Console.WriteLine("Show prompts for creating a ticket.");
+                    break;
+                case "2": // View
+                    Console.WriteLine("Run getTicketsByUserName using this userName.");
+                    break;
+                case "3": // View Ticket by TicketID
+                    Console.WriteLine("Show prompts for creating a ticket.");
+                    break;
+                case "4": // View Tickets by UserName
+                    Console.WriteLine("Run getTicketsByUserName using this userName.");
+                    break;   
+                case "5": // View Tickets by Status
+                    Console.WriteLine("Ask for status.");
+                    break;
+                case "6": // View Entire User List
+                    Console.WriteLine("show Entire User List.");
+                    break;
+                case "7": // View Entire Ticket List
+                    Console.WriteLine("Show Entire Ticket List.");
+                    break;                                      
+                default:
+                    Console.WriteLine("You're a dummy.");
+                    break;
+            }
+            Environment.Exit(0);
+        }
+
 
         public void DisplayEmployeeMenu()
         {
