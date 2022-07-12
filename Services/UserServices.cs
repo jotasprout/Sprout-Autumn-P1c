@@ -20,7 +20,15 @@ namespace Services
             return new List<Ticket>();
         }
 
+        public List<Ticket> GetMyTickets()
+        {
+            return new List<Ticket>();
+        }
 
+        public List<Ticket> FilterTicketsByCost()
+        {
+            return new List<Ticket>();
+        }               
 
         // Get all tickets by userID
 
