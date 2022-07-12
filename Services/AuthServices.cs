@@ -12,8 +12,6 @@ public class AuthServices
     {
         // create temp user object to store data retrieved from DataAccess layer
         User wantsInside;
-        // User wantsInside = new User(userName, password);
-
         try
         {
             // retrieve user from database using DataAccess method
@@ -23,8 +21,6 @@ public class AuthServices
             // return user to UI layer
             {
                 return wantsInside;
-                // If user is a Manager, display Manager Menu
-                // Console.WriteLine("Welcome, " + userName + ".");
             }
             else
             {
@@ -47,6 +43,13 @@ public class AuthServices
             return new User();
         }
 
+    }
+
+
+    public User RegisterUser()
+    {
+        // will use CreateUser
+        return new User();
     }
 
 }

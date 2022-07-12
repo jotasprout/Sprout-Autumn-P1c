@@ -36,6 +36,12 @@ namespace UI
             } while (true);
         }
 
+        // In an AUTH CONTROLLER CLASS
+        // method for handling HTTP REQUESTS for LOGIN attempts
+        // ADD a TRY call to the AuthService LOGIN method and return user info with a 200 STATUS
+        // ADD a CATCH and CUSTOM EXCEPTION to the LOGIN method below and return a 401 STATUS
+
+
         public void DisplayLoginUI()
         {
             Console.WriteLine("userName: ");
@@ -45,10 +51,9 @@ namespace UI
             // Console.WriteLine("userName: " + userName + ", password: " + password);
             // Environment.Exit(0);
             User userKnocking = new AuthServices().LoginUser(userName, password);
-            // Console.WriteLine(userKnocking.userName + " is a " + userKnocking.userRole + ".");
             if (userKnocking.userRole == userRole.Manager)
             {
-                // Console.WriteLine("Show Manager stuff.");
+                // If user is a Manager, display Manager Menu
                 DisplayManagerMenu();
             }
             else {
@@ -57,6 +62,11 @@ namespace UI
             }
             // Environment.Exit(0);
         }
+
+        // In an AUTH CONTROLLER CLASS
+        // method for handling HTTP REQUESTS for REGISTER attempts
+        // ADD a TRY call to the AuthService CREATE USER method and return user info with a 201 STATUS
+        // ADD a CATCH and CUSTOM EXCEPTION to the CREATE USER method below and return a 400 STATUS
 
         public void DisplayRegisterUI()
         {

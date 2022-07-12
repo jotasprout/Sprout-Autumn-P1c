@@ -9,10 +9,11 @@ namespace DataAccess
     public class UserRepository
     {
 
-
         public string thoseAll = "select * from AutumnERS.users;";
 
         public static string connectionString = "Server=tcp:autumn-server.database.windows.net,1433;Initial Catalog=AutumnDB;Persist Security Info=False;User ID=supremeadmin;Password=" + SensitiveVariables.dbpassword + ";MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+
+
 
         public List<User> GetUsers(string those)
         {
@@ -88,6 +89,15 @@ namespace DataAccess
                 Console.WriteLine(e.Message);
             }
             return thisUser;
+        }
+
+
+
+
+
+        public User GetUserByUserID()
+        {
+            return new User();
         }
 
     }

@@ -7,19 +7,15 @@ namespace DataAccess;
 
 // The only purpose of DAO or DataAccess layer is to talk to the database
 
-// methods for 
-// update/process = approve or deny 
-// Get a ticket by ticketID
-// Get all tickets by userID
-// filtering tickets by status
-// viewing all tickets
-
-
 public class TicketRepository
 {
     public static string connectionString = "Server=tcp:autumn-server.database.windows.net,1433;Initial Catalog=AutumnDB;Persist Security Info=False;User ID=supremeadmin;Password=" + SensitiveVariables.dbpassword + ";MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
     public string thoseAll = "select * from AutumnERS.tickets;";
+
+
+
+
 
     public List<Ticket> GetTickets(string those)
     {
@@ -50,6 +46,12 @@ public class TicketRepository
         return tickets;
     }
 
+
+
+
+
+
+
     public List<Ticket> GetAllTickets()
     {
         List<Ticket> allTickets = new List<Ticket>();
@@ -65,6 +67,42 @@ public class TicketRepository
         return allTicketsByUserName;
     }
 
+    // UPDATE/process = approve or deny 
+
+
+
+    // Get a ticket by ticketID
+
+    public List<Ticket> GetTicketsByTicketID()
+    {
+        // string TicketsByUserName = "select * from AutumnERS.tickets where userName='" + userIWantTicketsFor + "';";
+        // List<Ticket> allTicketsByUserName = new List<Ticket>();
+        // GetTickets(TicketsByUserName);
+        // return allTicketsByUserName;
+        return new List<Ticket>();
+    }
+
+    public List<Ticket> CreateTicket()
+    {
+        // string TicketsByUserName = "select * from AutumnERS.tickets where userName='" + userIWantTicketsFor + "';";
+        // List<Ticket> allTicketsByUserName = new List<Ticket>();
+        // GetTickets(TicketsByUserName);
+        // return allTicketsByUserName;
+        return new List<Ticket>();
+    }
+
+    // Get all tickets by userID
+
+    public List<Ticket> GetTicketsByUserID()
+    {
+        // string TicketsByUserName = "select * from AutumnERS.tickets where userName='" + userIWantTicketsFor + "';";
+        // List<Ticket> allTicketsByUserName = new List<Ticket>();
+        // GetTickets(TicketsByUserName);
+        // return allTicketsByUserName;
+        return new List<Ticket>();
+    }
+
+    // GET TICKET BY STATUS
 
     /*   
         public string thoseStatusTickets = "select * from AutumnERS.tickets where status = '" + SocialServices.thatStatus + "';";
