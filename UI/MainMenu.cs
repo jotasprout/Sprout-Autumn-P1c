@@ -1,5 +1,6 @@
 ﻿using System;
 using Services;
+using Models;
 
 namespace UI
 {
@@ -40,9 +41,11 @@ namespace UI
             string userName = Console.ReadLine();
             Console.WriteLine("Password, too: ");
             string password = Console.ReadLine();
-            Console.WriteLine("userName: " + userName + ", password: " + password);
+            // Console.WriteLine("userName: " + userName + ", password: " + password);
+            // Environment.Exit(0);
+            User userKnocking = new AuthServices().LoginUser(userName, password);
+            Console.WriteLine(userKnocking.userName + " is a " + userKnocking.userRole + ".");
             Environment.Exit(0);
-            //User userKnocking = new AuthServices().LoginUser(userName, password);
         }
 
         public void DisplayRegisterUI()

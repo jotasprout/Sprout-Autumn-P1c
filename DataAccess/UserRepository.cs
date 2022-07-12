@@ -62,6 +62,7 @@ namespace DataAccess
 
             // List<User> thisUser = new List<User>();
             User thisUser = new User();
+            User tempUserHoldingRole = new User();
 
             string getThisUser = "select * from AutumnERS.users where userName ='" + userWanted + "';";
 
@@ -75,8 +76,9 @@ namespace DataAccess
                 SqlDataReader reader = goGetThisUser.ExecuteReader();
                 while (reader.Read())
                 {
-                    Console.WriteLine("\t{0}\t{1}\t{2}\t{3}", reader[0], reader[1], reader[2], reader[3]);
-                    thisUser = new User((int)reader[0], (string)reader[1], (string)reader[2], (userRole)reader[3]);
+                    // Console.WriteLine("\t{0}\t{1}\t{2}\t{3}", reader[0], reader[1], reader[2], reader[3]);
+                    int RoleFromDB = tempUserHoldingRole.userRoleToInt((string)reader[3]); 
+                    thisUser = new User((int)reader[0], (string)reader[1], (string)reader[2], (userRole)RoleFromDB);
                 }
                 reader.Close();
                 makeConnection.Close();

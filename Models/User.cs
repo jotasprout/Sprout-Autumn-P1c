@@ -37,6 +37,17 @@
             this.userRole = (userRole) userRole;
         }
 
+        // for getting user by userName
+        public User(
+            string userName,
+            string password,
+            int userRole)
+        {
+            this.userName = userName;
+            this.password = password;
+            this.userRole = (userRole) userRole;
+        }
+
         // for logging in
         public User(
             string userName,
@@ -46,14 +57,32 @@
             this.password = password;
         }
 
-        public User (){}
+        public User(){}
+
+        public string userRoleToString(userRole userRoleNotString)
+        {
+            if(userRoleNotString == userRole.Employee)
+            {
+                return "Employee";
+            }
+            else { return "Manager"; }
+        }
+
+        public int userRoleToInt(string userRoleNotInt)
+        {
+           if(userRoleNotInt == "Manager")
+            {
+                return 1;
+            }
+            else { return 0; }
+        }        
 
         public override string ToString()
         {
-            return "ID: " + this.userID +
-            ", username: " + this.userName +
-            ", Password: " + this.password +
-            ", Role: " + this.userRole;
+            return $"userID: " + this.userID +
+            ", userName: " + this.userName +
+            ", password: " + this.password +
+            ", userRole: " + this.userRole;
         }
 
     }
