@@ -94,17 +94,22 @@ namespace UI
             Environment.Exit(0);
         }
 
+
+
+
+        // MANAGER MENU
+        // Console.WriteLine("[1] View Tickets");
+        // Filter Users by UserID, UserRole
+        // See All Tickets
+        // Filter Tickets by Status, UserName, UserID, UserRole
+
         // UserDAO peeps = new UserDAO();
         // peeps.GetAllUsers();
 
         // Console.WriteLine("Here is a list of what they want you to pay for:");
 
         // TicketDAO claims = new TicketDAO();
-        // claims.GetAllTickets();
-
-
-        // MANAGER MENU
-        // Console.WriteLine("[1] Resolve Tickets");
+        // claims.GetAllTickets();        
 
         // RESOLVE TICKETS MENU
  

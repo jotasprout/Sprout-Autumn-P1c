@@ -1,4 +1,4 @@
-# Foundations Project: Expense Reimbursement System (ERS)
+# Foundations Project: Expense Reimbursement System
 # AutumnERS v4.0
 
 ## Project Description 
@@ -13,9 +13,18 @@ Duration: 4 weeks
 ### User Stories:
 - Users can register as Employee or Manager
 - Users can login
-- Employees can submit expense requests
-- Managers can review requests
-- Managers can either approve or deny requests
+
+Employees 
+- can submit expense requests
+- See all their tickets
+- Filter Tickets by Status, Date
+
+Manaagers
+- Can either approve or deny requests
+- See All Users
+- Filter Users by UserID, UserRole
+- See All Tickets
+- Filter Tickets by Status, UserName, UserID, UserRole, Date
 
 ### Technology:
 - C#
