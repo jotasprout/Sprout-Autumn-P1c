@@ -45,7 +45,14 @@ namespace UI
             // Environment.Exit(0);
             User userKnocking = new AuthServices().LoginUser(userName, password);
             Console.WriteLine(userKnocking.userName + " is a " + userKnocking.userRole + ".");
-            Environment.Exit(0);
+            if (userKnocking.userRole == userRole.Manager)
+            {
+                Console.WriteLine("Show Manager stuff.");
+            }
+            else {
+                DisplayEmployeeMenu();
+            }
+            // Environment.Exit(0);
         }
 
         public void DisplayRegisterUI()
@@ -98,5 +105,26 @@ namespace UI
         // Console.WriteLine("[3] View Ticket by TicketID");  
         // Console.WriteLine("[4] View Tickets by UserName");
         // Console.WriteLine("[5] View Tickets by Status");
+
+        public void DisplayEmployeeMenu()
+        {
+            Console.WriteLine("Choose a task:");
+            Console.WriteLine("[1] Create a New Ticket");
+            Console.WriteLine("[2] View My Tickets");
+            string maybeTask = Console.ReadLine();
+            switch (maybeTask)
+            {
+                case "1": // Create
+                    Console.WriteLine("Show prompts for creating a ticket.");
+                    break;
+                case "2": // View
+                    Console.WriteLine("Run getTicketsByUserName using this userName.");
+                    break;
+                default:
+                    Console.WriteLine("You're a dummy.");
+                    break;
+            }
+            Environment.Exit(0);
+        }
     }
 }
