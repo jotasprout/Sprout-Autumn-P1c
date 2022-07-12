@@ -130,10 +130,10 @@ namespace UI
                     break;
                 case "4": // View Tickets by UserName
                     Console.WriteLine("Run getTicketsByUserName using this userName.");
-                    // TicketRepository TicketsFromPeepIWant = new TicketRepository();
-                    // Console.WriteLine("Which user do you want?");
-                    // string userIWantTicketsFrom = Console.ReadLine();
-                    // userIWantTicketsFrom.GetTicketsByUserName(userIWant);
+                    TicketRepository TicketsFromPeepIWant = new TicketRepository();
+                    Console.WriteLine("Which user do you want?");
+                    string userIWantTicketsFrom = Console.ReadLine();
+                    userIWantTicketsFrom.GetTicketsByUserName(userIWant);
                     break;   
                 case "5": // View Tickets by Status
                     Console.WriteLine("Ask for status.");

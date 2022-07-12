@@ -21,6 +21,8 @@ public class TicketRepository
 
     public string thoseAll = "select * from AutumnERS.tickets;";
 
+    public string TicketsByUserName = "select * from AutumnERS.tickets;"
+
     public List<Ticket> GetTickets(string those)
     {
 
@@ -56,6 +58,16 @@ public class TicketRepository
         GetTickets(thoseAll);
         return allTickets;
     }
+
+    public List<Ticket> GetTicketsByUserName(userIWantTicketsFor)
+    {
+        string TicketsByUserName = "select * from AutumnERS.tickets where userName='" + userIWantTicketsFor + "';";
+        List<Ticket> allTicketsByUserName = new List<Ticket>();
+        GetTickets(TicketsByUserName);
+        return allTicketsByUserName;
+    }
+
+
     /*   
         public string thoseStatusTickets = "select * from AutumnERS.tickets where status = '" + SocialServices.thatStatus + "';";
         public List<Ticket> GetTicketsByStatus(){
