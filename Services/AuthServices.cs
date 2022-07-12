@@ -24,7 +24,7 @@ public class AuthServices
             {
                 return wantsInside;
                 // If user is a Manager, display Manager Menu
-                Console.WriteLine("Welcome, " + userName + ".");
+                // Console.WriteLine("Welcome, " + userName + ".");
             }
             else
             {

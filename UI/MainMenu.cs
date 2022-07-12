@@ -45,13 +45,14 @@ namespace UI
             // Console.WriteLine("userName: " + userName + ", password: " + password);
             // Environment.Exit(0);
             User userKnocking = new AuthServices().LoginUser(userName, password);
-            Console.WriteLine(userKnocking.userName + " is a " + userKnocking.userRole + ".");
+            // Console.WriteLine(userKnocking.userName + " is a " + userKnocking.userRole + ".");
             if (userKnocking.userRole == userRole.Manager)
             {
-                Console.WriteLine("Show Manager stuff.");
+                // Console.WriteLine("Show Manager stuff.");
                 DisplayManagerMenu();
             }
             else {
+                Console.WriteLine("Show Employee stuff.");
                 DisplayEmployeeMenu();
             }
             // Environment.Exit(0);
