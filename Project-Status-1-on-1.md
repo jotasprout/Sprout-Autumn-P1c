@@ -32,7 +32,14 @@
 - Figure out how to keep current user's creds in memory across classes (just did!)
 - Finish Ticket creation
 - Build updateTicket method
+- WebAPI
+- Controllers
+- Endpoint mapping
 
 ## Minor To Do
 - Implement DRY by breaking up several existing methods into smaller chunks and put those where they belong.
 - ConnectionFactory
+- Filter tickets by 
+    - status
+    - userID
+    - ticketID
