@@ -34,15 +34,23 @@ public class Ticket
     // for putting objects into database
     public Ticket(
         int author_fk,
-        int resolver_fk,
         string description,
         string status,
+        decimal amount)
+    {
+        this.author_fk = author_fk;
+        this.description = description;
+        this.status = status;
+        this.amount = amount;
+    }
+
+
+
+    public Ticket(
+        string description,
         decimal amount
         )
     {
-        this.author_fk = author_fk;
-        this.resolver_fk = resolver_fk;
-        this.status = status;
         this.description = description;
         this.amount = amount;
     }
