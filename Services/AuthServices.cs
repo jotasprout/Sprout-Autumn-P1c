@@ -14,12 +14,17 @@ public class AuthServices
     public User LoginUser(string userName, string password)
     {
         // create temp user object to store data retrieved from DataAccess layer
-        User wantsInside;
+        User wantsInside = new User(userName,password);
         try
         {
             // retrieve user from database using DataAccess method
-            wantsInside = new UserRepository().GetUserByUserName(userName);
+            User lookInside = new UserRepository().GetUserByUserName(userName);
             // if password for parameter user matches password from database user
+            if (wantsInside.userName != lookInside.userName)
+            {
+                Console.WriteLine("That was messed up.");
+                throw new ResourceNotFound();
+            }
             if (wantsInside.password == password)
             // return user to UI layer
             {
@@ -31,11 +36,6 @@ public class AuthServices
                 // throw custom exception if passwords don't match
                 throw new InvalidCredentials();
             }
-            // throw custom exception if user doesn't exist
-            // if (user.userName)
-            // {
-            //     throw new ResourceNotFound();
-            // }
 
         }
         // catch any exception thrown from DataAccess
@@ -45,6 +45,12 @@ public class AuthServices
             Console.WriteLine(e.Message);
             return new User();
         }
+        catch (ResourceNotFound e)
+        {
+            // if exception caught, throw to the UI layer 
+            Console.WriteLine(e.Message);
+            return new User();
+        }        
 
     }
 

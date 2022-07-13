@@ -2,11 +2,14 @@
 using Services;
 using Models;
 using DataAccess;
+using CustomExceptions;
 
 namespace UI
 {
     public class MainMenu
     {
+        User CurrentUser = new User();
+
         public void Begin()
         {
             do
@@ -47,18 +50,36 @@ namespace UI
             string password = Console.ReadLine();
             // Console.WriteLine("userName: " + userName + ", password: " + password);
             // Environment.Exit(0);
-            User userKnocking = new AuthServices().LoginUser(userName, password);
-            
+            User userKnocking;
+            try
+            {
+                userKnocking = new AuthServices().LoginUser(userName, password);
+            }
+            catch (ResourceNotFound)
+            {
+                throw new ResourceNotFound("that username does not exist.");
+                Environment.Exit(0);
+            }
+            catch (InvalidCredentials)
+            {
+                throw new InvalidCredentials("that username does not exist.");
+                Environment.Exit(0);
+            }
             if (userKnocking.userRole == userRole.Manager)
             {
                 // If user is a Manager, display Manager Menu
                 DisplayManagerMenu();
             }
-            else {
+            if (userKnocking.userRole == userRole.Manager) 
+            {
                 Console.WriteLine("Show Employee stuff.");
                 DisplayEmployeeMenu();
             }
-            // Environment.Exit(0);
+            else
+            {
+                Environment.Exit(0);
+            }
+
         }
 
 
@@ -97,8 +118,8 @@ namespace UI
 
             User maybeUser = new AuthServices().RegisterUser(maybeUserName, maybePassword, maybeRole);
 
-            Environment.Exit(0);
-            // DisplayLoginUI();
+            //Environment.Exit(0);
+            DisplayLoginUI();
         }
 
 
