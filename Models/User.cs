@@ -60,14 +60,14 @@
 
         public User(){}
 
-        // public string userRoleToString(userRole userRoleNotString)
-        // {
-        //     if(userRoleNotString == userRole.Employee)
-        //     {
-        //         return "employee";
-        //     }
-        //     else { return "manager"; }
-        // }
+        public string userRoleToString(userRole userRoleNotString)
+        {
+            if(userRoleNotString == userRole.Employee)
+            {
+                return "employee";
+            }
+            else { return "manager"; }
+        }
 
         public int userRoleToInt(string userRoleNotInt)
         {
