@@ -82,14 +82,60 @@ public class TicketRepository
         // return allTicketsByUserName;
         throw new ResourceNotFound();    }
 
-    public List<Ticket> CreateTicket()
-    {
-        // string TicketsByUserName = "select * from AutumnERS.tickets where userName='" + userIWantTicketsFor + "';";
-        // List<Ticket> allTicketsByUserName = new List<Ticket>();
-        // GetTickets(TicketsByUserName);
-        // return allTicketsByUserName;
-        throw new ResourceNotFound();
-    }
+
+
+
+
+
+
+
+
+
+
+
+    // public List<Ticket> CreateTicket(newTicket)
+    // {
+    //     string createTicketSQL = "insert into AutumnERS.tickets (author_fk, description, amount) values (@author, @description, @amount);";
+
+    //     SqlConnection makeConnection = new SqlConnection(connectionString);
+    //     User ticketAuthor;
+    //     ticketAuthor = new UserRepository().GetUserByUserName
+    //     SqlCommand createThisTicket = new SqlCommand(createTicketSQL, makeConnection);
+
+    //     createThisTicket.Parameters.AddWithValue("@author", newTicket.)
+
+
+
+    //     // List<Ticket> allTicketsByUserName = new List<Ticket>();
+    //     // GetTickets(TicketsByUserName);
+    //     // return allTicketsByUserName;
+    //     throw new ResourceNotFound();
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // Get all tickets by userID
 

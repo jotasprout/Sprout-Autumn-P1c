@@ -1,6 +1,7 @@
 ﻿namespace Models
 {
 
+
     public enum userRole
     {
         Employee,Manager
