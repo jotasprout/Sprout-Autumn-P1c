@@ -8,7 +8,6 @@ namespace UI
 {
     public class MainMenu
     {
-        User CurrentUser = new User();
 
         public void Begin()
         {
