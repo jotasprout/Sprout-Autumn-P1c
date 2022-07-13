@@ -30,9 +30,10 @@ public class AuthServices
             if (wantsInside.password == password)
             // return user to UI layer
             {
-                CurrentUser = wantsInside;
-                Console.WriteLine("You are logged in as userName: " + CurrentUser.userName + ", with userID: " + CurrentUser.userID + " and password: " + CurrentUser.password);
-                return wantsInside;
+                CurrentUser = lookInside;
+                Console.WriteLine("You are logged in as userName: " + CurrentUser.userName + ", with userID: " + CurrentUser.userID + " and password: " + CurrentUser.password + " is a " + CurrentUser.userRole);
+                //return CurrentUser;
+                return lookInside;
             }
             else
             {

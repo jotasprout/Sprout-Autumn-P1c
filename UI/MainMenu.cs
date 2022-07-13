@@ -53,6 +53,16 @@ namespace UI
             try
             {
                 userKnocking = new AuthServices().LoginUser(userName, password);
+                if (userKnocking.userRole == userRole.Manager)
+                {
+                    // If user is a Manager, display Manager Menu
+                    DisplayManagerMenu();
+                }
+                else 
+                {
+                    Console.WriteLine("Show Employee stuff.");
+                    DisplayEmployeeMenu();
+                }
             }
             catch (ResourceNotFound)
             {
@@ -64,20 +74,18 @@ namespace UI
                 throw new InvalidCredentials("that username does not exist.");
                 Environment.Exit(0);
             }
-            if (userKnocking.userRole == userRole.Manager)
-            {
-                // If user is a Manager, display Manager Menu
-                DisplayManagerMenu();
-            }
-            if (userKnocking.userRole == userRole.Manager) 
-            {
-                Console.WriteLine("Show Employee stuff.");
-                DisplayEmployeeMenu();
-            }
-            else
-            {
-                Environment.Exit(0);
-            }
+            // if (userKnocking.userRole == userRole.Manager)
+            // {
+            //     // If user is a Manager, display Manager Menu
+            //     DisplayManagerMenu();
+            // }
+            // else 
+            // {
+            //     Console.WriteLine("Show Employee stuff.");
+            //     DisplayEmployeeMenu();
+            // }
+
+                //Environment.Exit(0);
 
         }
 
@@ -192,7 +200,6 @@ namespace UI
             Environment.Exit(0);
         }
 
-
         public void DisplayEmployeeMenu()
         {
             Console.WriteLine("Choose a task:");
@@ -206,12 +213,14 @@ namespace UI
                     break;
                 case "2": // View
                     Console.WriteLine("Tickets submitted by .");
+                    // TicketRepository TicketsFromPeepIWant = new TicketRepository();
+                    // TicketsFromPeepIWant.GetTicketsByUserName(userIWantTicketsFrom);
                     break;
                 default:
                     Console.WriteLine("You're a dummy.");
                     break;
             }
-            Environment.Exit(0);
-        }
+            //Environment.Exit(0);
+        }   
     }
 }
