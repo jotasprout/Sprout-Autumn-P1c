@@ -45,7 +45,7 @@ public class TicketRepository
     }
 
 
-    List<Ticket> GetAllTickets()
+    public List<Ticket> GetAllTickets()
     {
         List<Ticket> allTickets = new List<Ticket>();
         GetTickets(thoseAll);
@@ -54,11 +54,11 @@ public class TicketRepository
 
     
 
-    List<Ticket> GetTicketsByUserName(string userIWantTicketsFor)
+    public List<Ticket> GetTicketsByUserName(string userIWantTicketsFor)
     {
-        public User userInQuestion = new GetUserByUserName(userIWantTicketsFor);
-        public int userID = userInQuestion.userID;
-        public string byUserQueryWithID = "select * from AutumnERS.tickets where author_fk = " + userID + ";";
+        User userInQuestion = new GetUserByUserName(userIWantTicketsFor);
+        int userID = userInQuestion.userID;
+        string byUserQueryWithID = "select * from AutumnERS.tickets where author_fk = " + userID + ";";
         List<Ticket> allTicketsByUserName = new GetTickets(byUserQueryWithID);
         return allTicketsByUserName;
     }
@@ -69,7 +69,7 @@ public class TicketRepository
 
     // Get a ticket by ticketID
 
-    public List<Ticket> GetTicketsByTicketID()
+    List<Ticket> GetTicketsByTicketID()
     {
         // string TicketsByUserName = "select * from AutumnERS.tickets where userName='" + userIWantTicketsFor + "';";
         // List<Ticket> allTicketsByUserName = new List<Ticket>();
@@ -134,7 +134,7 @@ public class TicketRepository
 
     // Get all tickets by userID
 
-    public List<Ticket> GetTicketsByUserID()
+    List<Ticket> GetTicketsByUserID()
     {
         // string TicketsByUserName = "select * from AutumnERS.tickets where userName='" + userIWantTicketsFor + "';";
         // List<Ticket> allTicketsByUserName = new List<Ticket>();
