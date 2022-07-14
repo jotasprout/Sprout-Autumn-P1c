@@ -154,7 +154,11 @@ namespace UI
                     Console.WriteLine("Show prompts for creating a ticket.");
                     break;
                 case "2": // View
-                    Console.WriteLine("Run getTicketsByUserName using CurrentUser userName.");
+                    Console.WriteLine("Here all your tickets:");
+                    TicketRepository myTickets = new TicketRepository();
+                    int myIDint = userLoggingIn.userID;
+                    string myIDstring = myIDint.ToString();
+                    myTickets.GetTicketsByUserID(myIDstring);
                     break;
                 case "3": // View Ticket by TicketID
                     Console.WriteLine("Show prompts for creating a ticket.");
@@ -204,8 +208,10 @@ namespace UI
                     break;
                 case "2": // View
                     Console.WriteLine("Tickets submitted by .");
-                    // TicketRepository TicketsFromPeepIWant = new TicketRepository();
-                    // TicketsFromPeepIWant.GetTicketsByUserName(userIWantTicketsFrom);
+                    TicketRepository myTickets = new TicketRepository();
+                    int myIDint = userLoggingIn.userID;
+                    string myIDstring = myIDint.ToString();
+                    myTickets.GetTicketsByUserID(myIDstring);
                     break;
                 default:
                     Console.WriteLine("You're a dummy.");

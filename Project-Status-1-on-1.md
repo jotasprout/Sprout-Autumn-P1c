@@ -19,8 +19,8 @@
     - **ManagerMenu:** Choices:
         - Create a New Ticket IN PROGRESS
         - View My Tickets (uses getTicketsByUserName see above)
-        - View Ticket by TicketID - To Do ... easy
-        - View Tickets by UserName (for some reason, doing it from here says invalid column name)
+        - View Ticket by TicketID - YES
+        - View Tickets by UserName YES
         - View Tickets by Status - To Do ... easy
         - View Entire User List = YES
         - View Entire Ticket  = YES
