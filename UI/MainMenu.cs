@@ -161,7 +161,13 @@ namespace UI
                     myTickets.GetTicketsByUserID(myIDstring);
                     break;
                 case "3": // View Ticket by TicketID
-                    Console.WriteLine("Show prompts for creating a ticket.");
+                    Console.WriteLine("Enter ticketID.");
+                    string ticketIDString = Console.ReadLine();
+                    TicketRepository TicketWithThisID = new TicketRepository();
+                    TicketWithThisID.GrabTicketByTicketID(ticketIDString);                    
+                                            // int myIDint = userLoggingIn.userID;
+                                            // string myIDstring = myIDint.ToString();
+
                     break;
                 case "4": // View Tickets by UserName
                     Console.WriteLine("Which user do you want?");

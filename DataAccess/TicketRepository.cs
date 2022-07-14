@@ -14,6 +14,13 @@ public class TicketRepository
 
     public string thoseAll = "select * from AutumnERS.tickets;";
 
+    public List<Ticket> GrabTicketByTicketID(string ticketID)
+    {
+        string byTicketID = "select * from AutumnERS.tickets where ticketID = " + ticketID + ";";
+        List<Ticket> ticketIWant = new List<Ticket>(); 
+        GetTickets(byTicketID);
+        return ticketIWant;  
+    }
 
     public List<Ticket> GetTickets(string those)
     {
@@ -74,15 +81,9 @@ public class TicketRepository
 //  UPDATE AutumnERS.tickets SET status = 'Approved' WHERE ticketID = 16;
 
 
-    // Get a ticket by ticketID
+    //Get a ticket by ticketID
 
-    List<Ticket> GetTicketsByTicketID()
-    {
-        // string TicketsByUserName = "select * from AutumnERS.tickets where userName='" + userIWantTicketsFor + "';";
-        // List<Ticket> allTicketsByUserName = new List<Ticket>();
-        // GetTickets(TicketsByUserName);
-        // return allTicketsByUserName;
-        throw new ResourceNotFound();    }
+
 
 
 
@@ -117,38 +118,8 @@ public class TicketRepository
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // Get all tickets by userID
 
-    List<Ticket> GetTicketsByUserID()
-    {
-        // string TicketsByUserName = "select * from AutumnERS.tickets where userName='" + userIWantTicketsFor + "';";
-        // List<Ticket> allTicketsByUserName = new List<Ticket>();
-        // GetTickets(TicketsByUserName);
-        // return allTicketsByUserName;
-        throw new ResourceNotFound();
-    }
 
     // GET TICKET BY STATUS
 
