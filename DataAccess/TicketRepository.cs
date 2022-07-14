@@ -52,15 +52,21 @@ public class TicketRepository
         return allTickets;
     }
 
-    
+// TicketRepository TicketsFromPeepIWant = new TicketRepository();
+// TicketsFromPeepIWant.GetTicketsByUserName(userIWantTicketsFrom);
+
+
+// TicketRepository TicketsFromPeepIWant = new TicketRepository();
+// TicketsFromPeepIWant.GetTicketsByUserName(userIWantTicketsFor);
 
     public List<Ticket> GetTicketsByUserName(string userIWantTicketsFor)
     {
-        User userInQuestion = new GetUserByUserName(userIWantTicketsFor);
+        User userInQuestion = new UserRepository().GetUserByUserName(userIWantTicketsFor);
         int userID = userInQuestion.userID;
         string byUserQueryWithID = "select * from AutumnERS.tickets where author_fk = " + userID + ";";
-        List<Ticket> allTicketsByUserName = new GetTickets(byUserQueryWithID);
-        return allTicketsByUserName;
+        List<Ticket> TicketsFromPeepIWant = new List<Ticket>(); 
+        GetTickets(byUserQueryWithID);
+        return TicketsFromPeepIWant;
     }
 
     // UPDATE/process = approve or deny 
