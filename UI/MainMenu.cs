@@ -53,39 +53,37 @@ namespace UI
             try
             {
                 userKnocking = new AuthServices().LoginUser(userName, password);
-                if (userKnocking.userRole == userRole.Manager)
+                if (userKnocking.password == password && userKnocking.userName == userName)
                 {
-                    // If user is a Manager, display Manager Menu
-                    DisplayManagerMenu();
+                    if (userKnocking.userRole == userRole.Manager)
+                    {
+                        // If user is a Manager, display Manager Menu
+                        DisplayManagerMenu(userKnocking);
+                    }
+                    else 
+                    {
+                        Console.WriteLine("Show Employee stuff.");
+                        DisplayEmployeeMenu(userKnocking);
+                    }
                 }
-                else 
+                else
                 {
-                    Console.WriteLine("Show Employee stuff.");
-                    DisplayEmployeeMenu();
+                    Console.WriteLine("Access Denied");
+                    Environment.Exit(0);
                 }
+
             }
             catch (ResourceNotFound)
             {
-                throw new ResourceNotFound("that username does not exist.");
+                throw new ResourceNotFound("We don't seem to have anyone by that name.");
                 Environment.Exit(0);
             }
             catch (InvalidCredentials)
             {
-                throw new InvalidCredentials("that username does not exist.");
+                throw new InvalidCredentials("those creds don't work.");
                 Environment.Exit(0);
             }
-            // if (userKnocking.userRole == userRole.Manager)
-            // {
-            //     // If user is a Manager, display Manager Menu
-            //     DisplayManagerMenu();
-            // }
-            // else 
-            // {
-            //     Console.WriteLine("Show Employee stuff.");
-            //     DisplayEmployeeMenu();
-            // }
-
-                //Environment.Exit(0);
+            //Environment.Exit(0);
 
         }
 
@@ -98,10 +96,6 @@ namespace UI
             Console.WriteLine("You typed " + maybeUserName + ".");
             Console.WriteLine("Type a password.");
             string maybePassword = Console.ReadLine();
-            // Console.WriteLine("First Name: ");
-            // string maybeFirstName = Console.ReadLine();
-            // Console.WriteLine("Last Name: ");
-            // string maybeLastName = Console.ReadLine();  
             Console.WriteLine("Your role: ");
             Console.WriteLine("[1] Employee");
             Console.WriteLine("[2] Manager");
@@ -119,8 +113,7 @@ namespace UI
                     Console.WriteLine("Thank you.");
                     break;
             }
-            // Console.WriteLine(maybeFirstName + " " + maybeLastName + " is a " + maybeRole + ".");
-            //string maybeRoleString = new userRoleToString(maybeRole);
+
             Console.WriteLine(" Attempting to register userName: " + maybeUserName + ", password: " + maybePassword + ", Role: " + maybeRole + ".");
 
             User maybeUser = new AuthServices().RegisterUser(maybeUserName, maybePassword, maybeRole);
@@ -133,18 +126,7 @@ namespace UI
 
 
         // MANAGER MENU
-        // Console.WriteLine("[1] View Tickets");
-        // Filter Users by UserID, UserRole
-        // See All Tickets
-        // Filter Tickets by Status, UserName, UserID, UserRole
-
-        // UserDAO peeps = new UserDAO();
-        // peeps.GetAllUsers();
-
-        // Console.WriteLine("Here is a list of what they want you to pay for:");
-
-        // TicketDAO claims = new TicketDAO();
-        // claims.GetAllTickets();        
+        // Filter Tickets by Status     
 
         // RESOLVE TICKETS MENU
  
@@ -152,7 +134,9 @@ namespace UI
         // Console.WriteLine("[4] View Tickets by UserName");
         // Console.WriteLine("[5] View Tickets by Status");
 
-        public void DisplayManagerMenu()
+        //User userLoggingIn = new User();
+
+        public void DisplayManagerMenu(User userLoggingIn)
         {
             Console.WriteLine("Choose a task:");
             Console.WriteLine("[1] Create a New Ticket");
@@ -207,7 +191,7 @@ namespace UI
             Environment.Exit(0);
         }
 
-        public void DisplayEmployeeMenu()
+        public void DisplayEmployeeMenu(User userLoggingIn)
         {
             Console.WriteLine("Choose a task:");
             Console.WriteLine("[1] Create a New Ticket");

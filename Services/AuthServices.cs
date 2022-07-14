@@ -37,7 +37,7 @@ public class AuthServices
             }
             else
             {
-                Console.WriteLine("Go away.");
+                Console.WriteLine("Your credentials are no good.");
                 // throw custom exception if passwords don't match
                 throw new InvalidCredentials();
             }
