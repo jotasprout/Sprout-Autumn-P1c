@@ -1,3 +1,11 @@
+
+-- Tickets by User
+select * from AutumnERS.tickets where author_fk = 4;
+
+UPDATE AutumnERS.tickets SET status = 'Approved' WHERE ticketID = 16;
+
+-- OLD -- 
+
 create schema AutumnERS;
 
 --The constraint is found by running the second command and copy-pasting the specified constraint in the error msg

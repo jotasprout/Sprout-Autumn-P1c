@@ -59,7 +59,7 @@ namespace DataAccess
         }
 
 
-
+        //public User GetUserIDbyUserName();
 
         public User GetUserByUserName(string userWanted)
         {

@@ -15,9 +15,6 @@ public class TicketRepository
     public string thoseAll = "select * from AutumnERS.tickets;";
 
 
-
-
-
     public List<Ticket> GetTickets(string those)
     {
 
@@ -48,28 +45,26 @@ public class TicketRepository
     }
 
 
-
-
-
-
-
-    public List<Ticket> GetAllTickets()
+    List<Ticket> GetAllTickets()
     {
         List<Ticket> allTickets = new List<Ticket>();
         GetTickets(thoseAll);
         return allTickets;
     }
 
-    public List<Ticket> GetTicketsByUserName(string userIWantTicketsFor)
+    
+
+    List<Ticket> GetTicketsByUserName(string userIWantTicketsFor)
     {
-        string TicketsByUserName = "select * from AutumnERS.tickets where userName='" + userIWantTicketsFor + "';";
-        List<Ticket> allTicketsByUserName = new List<Ticket>();
-        GetTickets(TicketsByUserName);
+        public User userInQuestion = new GetUserByUserName(userIWantTicketsFor);
+        public int userID = userInQuestion.userID;
+        public string byUserQueryWithID = "select * from AutumnERS.tickets where author_fk = " + userID + ";";
+        List<Ticket> allTicketsByUserName = new GetTickets(byUserQueryWithID);
         return allTicketsByUserName;
     }
 
     // UPDATE/process = approve or deny 
-
+//  UPDATE AutumnERS.tickets SET status = 'Approved' WHERE ticketID = 16;
 
 
     // Get a ticket by ticketID

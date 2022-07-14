@@ -41,5 +41,8 @@
 - ConnectionFactory
 - Filter tickets by 
     - status
-    - userID
+    - userID (author_fk)
     - ticketID
+
+## Wish List
+- Total amount for all requests by author_fk
