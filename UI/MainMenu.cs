@@ -161,7 +161,8 @@ namespace UI
             Console.WriteLine("[4] View Tickets by UserName");
             Console.WriteLine("[5] View Tickets by Status");
             Console.WriteLine("[6] View Entire User List");
-            Console.WriteLine("[7] View Entire Ticket List");                         
+            Console.WriteLine("[7] View Entire Ticket List"); 
+            Console.WriteLine("[8] View Tickets by UserID");                        
             string maybeTask = Console.ReadLine();
             switch (maybeTask)
             {
@@ -169,7 +170,7 @@ namespace UI
                     Console.WriteLine("Show prompts for creating a ticket.");
                     break;
                 case "2": // View
-                    Console.WriteLine("Run getTicketsByUserName using this userName.");
+                    Console.WriteLine("Run getTicketsByUserName using CurrentUser userName.");
                     break;
                 case "3": // View Ticket by TicketID
                     Console.WriteLine("Show prompts for creating a ticket.");
@@ -192,7 +193,13 @@ namespace UI
                     Console.WriteLine("Here is a list of all Tickets:");
                     TicketRepository tickets = new TicketRepository();
                     tickets.GetAllTickets();
-                    break;                                      
+                    break;     
+                case "8": // View Tickets by UserID
+                    Console.WriteLine("Enter userID.");
+                    string userIDforTicketsFrom = Console.ReadLine();
+                    TicketRepository TicketsFromThisUserID = new TicketRepository();
+                    TicketsFromThisUserID.GetTicketsByUserID(userIDforTicketsFrom);
+                    break;                                                      
                 default:
                     Console.WriteLine("You're a dummy.");
                     break;

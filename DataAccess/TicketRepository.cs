@@ -52,18 +52,19 @@ public class TicketRepository
         return allTickets;
     }
 
-// TicketRepository TicketsFromPeepIWant = new TicketRepository();
-// TicketsFromPeepIWant.GetTicketsByUserName(userIWantTicketsFrom);
-
-
-// TicketRepository TicketsFromPeepIWant = new TicketRepository();
-// TicketsFromPeepIWant.GetTicketsByUserName(userIWantTicketsFor);
-
     public List<Ticket> GetTicketsByUserName(string userIWantTicketsFor)
     {
         User userInQuestion = new UserRepository().GetUserByUserName(userIWantTicketsFor);
         int userID = userInQuestion.userID;
         string byUserQueryWithID = "select * from AutumnERS.tickets where author_fk = " + userID + ";";
+        List<Ticket> TicketsFromPeepIWant = new List<Ticket>(); 
+        GetTickets(byUserQueryWithID);
+        return TicketsFromPeepIWant;
+    }
+
+    public List<Ticket> GetTicketsByUserID(string userIWantTicketsFor)
+    {
+        string byUserQueryWithID = "select * from AutumnERS.tickets where author_fk = " + userIWantTicketsFor + ";";
         List<Ticket> TicketsFromPeepIWant = new List<Ticket>(); 
         GetTickets(byUserQueryWithID);
         return TicketsFromPeepIWant;
