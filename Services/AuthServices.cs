@@ -27,11 +27,11 @@ public class AuthServices
                 Console.WriteLine("That was messed up.");
                 throw new ResourceNotFound();
             }
-            if (wantsInside.password == password)
+            if (wantsInside.password == lookInside.password)
             // return user to UI layer
             {
                 CurrentUser = lookInside;
-                Console.WriteLine("You are logged in as userName: " + CurrentUser.userName + ", with userID: " + CurrentUser.userID + " and password: " + CurrentUser.password + " is a " + CurrentUser.userRole);
+                //Console.WriteLine("You are logged in as userName: " + CurrentUser.userName + ", with userID: " + CurrentUser.userID + " and password: " + CurrentUser.password + " is a " + CurrentUser.userRole);
                 //return CurrentUser;
                 return lookInside;
             }
@@ -41,7 +41,6 @@ public class AuthServices
                 // throw custom exception if passwords don't match
                 throw new InvalidCredentials();
             }
-
         }
         // catch any exception thrown from DataAccess
         catch (InvalidCredentials e)
@@ -56,7 +55,6 @@ public class AuthServices
             Console.WriteLine(e.Message);
             return new User();
         }        
-
     }
 
 
@@ -74,7 +72,6 @@ public class AuthServices
         saveUser.Parameters.AddWithValue("@userName", thisUser.userName);
         saveUser.Parameters.AddWithValue("@password", thisUser.password);
         saveUser.Parameters.AddWithValue("@userRole", thisUser.userRoleToString(thisUser.userRole));
-        //saveUser.Parameters.AddWithValue("@userRole", thisUser.userRoleString);
 
         User userWannabe = new UserRepository().GetUserByUserName(userName);
         // if password for parameter user matches password from database user
@@ -101,13 +98,8 @@ public class AuthServices
             {
                 Console.WriteLine(e.Message);
             }
-
-            return new User();
-
+            //return new User();
         }
-
-
-
     return thisUser;
     }
 

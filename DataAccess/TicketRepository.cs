@@ -100,28 +100,16 @@ public class TicketRepository
         string byTicketID = "select * from AutumnERS.tickets where ticketID = " + ticketID + ";";
         List<Ticket> ticketIWant = new List<Ticket>(); 
         GetTickets(byTicketID);
-        return ticketIWant;  
-        // Console.WriteLine("What do you want to do?");
-        // Console.WriteLine("[1] Resolve this ticket.");
-        // Console.WriteLine("[2] Exit.");
-        // string input = Console.ReadLine();
-        // switch (input)
-        // {
-        //     case "1": // Resolve
-        //         ResolveThisTicket(ticketID);
-        //         break;
-        //     case "2": // Exit
-        //         Console.WriteLine("Goodbye.");
-        //         Environment.Exit(0);
-        //         break;
-        //     default:
-        //         Console.WriteLine("What kind of nonsense was that?");
-        //         break;
-        // }        
+        return ticketIWant;        
     }
 
-    public List<Ticket> ResolveThisTicket(string ticketID)
+    public List<Ticket> ResolveThisTicket(string ticketID, User CurrentUserIn)
     {
+        // CurrentUser info
+        int myIDint = CurrentUserIn.userID;
+        // model of how to use it
+        //myTickets.GetTicketsByUserID(myIDstring);
+        // ticket info follows
         List<Ticket> ticketToUpdate = new List<Ticket>();
 
         Console.WriteLine("Approve or Deny?");
@@ -141,13 +129,14 @@ public class TicketRepository
                 break;
         } 
 
-        string updateTicketStatement = "UPDATE AutumnERS.tickets SET status = @status WHERE ticketID = @ticketID;";
-        //string updateTicketStatement = "UPDATE AutumnERS.tickets SET status = '" + newStatus + "' WHERE ticketID = " + ticketID + ";";
+        string updateTicketStatement = "UPDATE AutumnERS.tickets SET status = @status, resolver_fk = @myIDint WHERE ticketID = @ticketID;";
+        //string updateTicketStatement = "UPDATE AutumnERS.tickets SET status = '" + newStatus + "', resolver_fk =  WHERE ticketID = " + ticketID + ";";
         // UPDATE AutumnERS.tickets SET status = 'Approved' WHERE ticketID = 16;
         SqlConnection makeConnection = new SqlConnection(connectionString);
         SqlCommand updateTicket = new SqlCommand(updateTicketStatement, makeConnection);
         
         updateTicket.Parameters.AddWithValue("@ticketID", ticketID);
+        updateTicket.Parameters.AddWithValue("@myIDint", myIDint);
         updateTicket.Parameters.AddWithValue("@status", newStatus);
 
         try
@@ -175,23 +164,48 @@ public class TicketRepository
         return ticketToUpdate;
     }
 
-    // public List<Ticket> CreateTicket(newTicket)
-    // {
-    //     string createTicketSQL = "insert into AutumnERS.tickets (author_fk, description, amount) values (@author, @description, @amount);";
+    public List<Ticket> CreateTicket(User CurrentUser)
+    {
+        // CurrentUser info
+        int myIDint = CurrentUser.userID;
+        string myIDstring = myIDint.ToString();
 
-    //     SqlConnection makeConnection = new SqlConnection(connectionString);
-    //     User ticketAuthor;
-    //     ticketAuthor = new UserRepository().GetUserByUserName
-    //     SqlCommand createThisTicket = new SqlCommand(createTicketSQL, makeConnection);
+        // Ticket info
+        Console.WriteLine("What is it?");
+        string ticketDescription = Console.ReadLine();
+        Console.WriteLine("How much?");
+        string ticketCost = Console.ReadLine();
+        Console.WriteLine("Attempting to create Ticket");
 
-    //     createThisTicket.Parameters.AddWithValue("@author", newTicket.)
+        List<Ticket> AllMyTickets = new List<Ticket>();
 
-    //     // List<Ticket> allTicketsByUserName = new List<Ticket>();
-    //     // GetTickets(TicketsByUserName);
-    //     // return allTicketsByUserName;
-    //     throw new ResourceNotFound();
-    // }
+        string createTicketSQL = "insert into AutumnERS.tickets (author_fk, description, amount) values (@author, @description, @amount);";
 
-    // GET TICKET BY STATUS
+        SqlConnection makeConnection = new SqlConnection(connectionString);
+        SqlCommand createThisTicket = new SqlCommand(createTicketSQL, makeConnection);
+
+        createThisTicket.Parameters.AddWithValue("@author", myIDstring);
+        createThisTicket.Parameters.AddWithValue("@description", ticketDescription);
+        createThisTicket.Parameters.AddWithValue("@amount", ticketCost);
+
+        try
+        {
+            makeConnection.Open();
+            int itWorked = createThisTicket.ExecuteNonQuery();
+            makeConnection.Close();
+            if (itWorked !=0)
+            {
+                Console.WriteLine("Request submitted successfully. Good luck!");
+                AllMyTickets = GetTicketsByUserID(myIDstring);
+                // Return myTickets;
+                //throw new UsernameNotAvailable();
+            }
+        }
+        // catch (UsernameNotAvailable e)
+        // {
+        //     Console.WriteLine(e.Message);
+        // }
+        return AllMyTickets;
+    }
 
 }

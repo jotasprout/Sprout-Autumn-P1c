@@ -21,7 +21,7 @@
         - View My Tickets (uses getTicketsByUserName see above)
         - View Ticket by TicketID - YES
         - View Tickets by UserName YES
-        - View Tickets by Status - To Do ... easy
+        - View Tickets by Status - YES
         - View Entire User List = YES
         - View Entire Ticket  = YES
 - Create User
@@ -30,19 +30,14 @@
 ## Major To Do
 - Finish CreateTicket method
 - Figure out how to keep current user's creds in memory across classes (just did!)
-- Finish Ticket creation
-- Build updateTicket method
 - WebAPI
 - Controllers
 - Endpoint mapping
+- Http stuff
 
 ## Minor To Do
-- Implement DRY by breaking up several existing methods into smaller chunks and put those where they belong.
 - ConnectionFactory
-- Filter tickets by 
-    - status
-    - userID (author_fk)
-    - ticketID
+- Returned tickets show usernames
 
 ## Wish List
 - Total amount for all requests by author_fk

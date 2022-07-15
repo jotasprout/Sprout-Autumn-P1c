@@ -47,8 +47,7 @@ namespace UI
             string userName = Console.ReadLine();
             Console.WriteLine("Password, too: ");
             string password = Console.ReadLine();
-            // Console.WriteLine("userName: " + userName + ", password: " + password);
-            // Environment.Exit(0);
+
             User userKnocking;
             try
             {
@@ -57,12 +56,10 @@ namespace UI
                 {
                     if (userKnocking.userRole == userRole.Manager)
                     {
-                        // If user is a Manager, display Manager Menu
                         DisplayManagerMenu(userKnocking);
                     }
                     else 
                     {
-                        Console.WriteLine("Show Employee stuff.");
                         DisplayEmployeeMenu(userKnocking);
                     }
                 }
@@ -117,20 +114,7 @@ namespace UI
             DisplayLoginUI();
         }
 
-
-
-
-        // MANAGER MENU
-        // Filter Tickets by Status     
-
-        // RESOLVE TICKETS MENU
-        // Console.WriteLine("[5] View Tickets by Status");
-        // Which ticket do you want to resolve? 
-
-
-        //User userLoggingIn = new User();
-
-        public void DisplayManagerMenu(User userLoggingIn)
+        public void DisplayManagerMenu(User CurrentUserIn)
         {
             Console.WriteLine("Choose a task:");
             Console.WriteLine("[1] Create a New Ticket");
@@ -149,9 +133,9 @@ namespace UI
                     Console.WriteLine("Show prompts for creating a ticket.");
                     break;
                 case "2": // All of MY tickets
-                    Console.WriteLine("Here all your tickets:");
+                    Console.WriteLine("Here are all your tickets:");
                     TicketRepository myTickets = new TicketRepository();
-                    int myIDint = userLoggingIn.userID;
+                    int myIDint = CurrentUserIn.userID;
                     string myIDstring = myIDint.ToString();
                     myTickets.GetTicketsByUserID(myIDstring);
                     break;                  
@@ -183,11 +167,11 @@ namespace UI
                     TicketRepository tickets = new TicketRepository();
                     tickets.GetAllTickets();
                     break;     
-                case "8": // Resolve a ticket
+                case "8": // Resolve a ticket               
                     Console.WriteLine("Enter ticketID.");
                     string ticketIDtoResolve = Console.ReadLine();
                     TicketRepository resolvingTicket = new TicketRepository();
-                    resolvingTicket.ResolveThisTicket(ticketIDtoResolve);                  
+                    resolvingTicket.ResolveThisTicket(ticketIDtoResolve, CurrentUserIn);                  
                     break;                      
                 case "9": // View Entire User List
                     Console.WriteLine("Here is a list of all users:");
@@ -198,10 +182,10 @@ namespace UI
                     Console.WriteLine("You're a dummy.");
                     break;
             }
-            Environment.Exit(0);
+            //Environment.Exit(0);
         }
 
-        public void DisplayEmployeeMenu(User userLoggingIn)
+        public void DisplayEmployeeMenu(User CurrentUserIn)
         {
             Console.WriteLine("Choose a task:");
             Console.WriteLine("[1] Create a New Ticket");
@@ -210,12 +194,13 @@ namespace UI
             switch (maybeTask)
             {
                 case "1": // Create
-                    Console.WriteLine("Show prompts for creating a ticket.");
+                    TicketRepository newTicket = new TicketRepository();
+                    newTicket.CreateTicket(CurrentUserIn);                    
                     break;
                 case "2": // View
                     Console.WriteLine("Tickets submitted by .");
                     TicketRepository myTickets = new TicketRepository();
-                    int myIDint = userLoggingIn.userID;
+                    int myIDint = CurrentUserIn.userID;
                     string myIDstring = myIDint.ToString();
                     myTickets.GetTicketsByUserID(myIDstring);
                     break;
