@@ -134,13 +134,14 @@ namespace UI
         {
             Console.WriteLine("Choose a task:");
             Console.WriteLine("[1] Create a New Ticket");
-            Console.WriteLine("[2] View My Tickets");
+            Console.WriteLine("[2] My Tickets");
             Console.WriteLine("[3] View Ticket by TicketID");  
             Console.WriteLine("[4] View Tickets by UserName");
             Console.WriteLine("[5] View Tickets by Status");
-            Console.WriteLine("[6] View Entire User List");
+            Console.WriteLine("[6] View Tickets by UserID");
             Console.WriteLine("[7] View Entire Ticket List"); 
-            Console.WriteLine("[8] View Tickets by UserID");                        
+            Console.WriteLine("[8] Approve or Deny a Ticket");             
+            Console.WriteLine("[9] View Entire User List");                        
             string maybeTask = Console.ReadLine();
             switch (maybeTask)
             {
@@ -166,27 +167,33 @@ namespace UI
                     TicketRepository TicketsFromPeepIWant = new TicketRepository();
                     TicketsFromPeepIWant.GetTicketsByUserName(userIWantTicketsFrom);
                     break;   
-                case "8": // View Tickets by UserID
+                case "5": // View Tickets by Status
+                    TicketRepository TicketsByStatus = new TicketRepository();
+                    TicketsByStatus.GetTicketsByStatus();
+                    //GetTicketsByStatus();
+                    break;          
+                case "6": // View Tickets by UserID
                     Console.WriteLine("Enter userID.");
                     string userIDforTicketsFrom = Console.ReadLine();
                     TicketRepository TicketsFromThisUserID = new TicketRepository();
                     TicketsFromThisUserID.GetTicketsByUserID(userIDforTicketsFrom);
                     break;                     
-                case "5": // View Tickets by Status
-                    TicketRepository TicketsByStatus = new TicketRepository();
-                    TicketsByStatus.GetTicketsByStatus();
-                    //GetTicketsByStatus();
-                    break;
-                case "6": // View Entire User List
-                    Console.WriteLine("Here is a list of all users:");
-                    UserRepository peeps = new UserRepository();
-                    peeps.GetAllUsers();
-                    break;
                 case "7": // View Entire Ticket List
                     Console.WriteLine("Here is a list of all Tickets:");
                     TicketRepository tickets = new TicketRepository();
                     tickets.GetAllTickets();
-                    break;                                       
+                    break;     
+                case "8": // Resolve a ticket
+                    Console.WriteLine("Enter ticketID.");
+                    string ticketIDString = Console.ReadLine();
+                    TicketRepository TicketWithThisID = new TicketRepository();
+                    TicketWithThisID.ResolveThisTicket(ticketIDString);                    
+                    break;                      
+                case "9": // View Entire User List
+                    Console.WriteLine("Here is a list of all users:");
+                    UserRepository peeps = new UserRepository();
+                    peeps.GetAllUsers();
+                    break;                                                    
                 default:
                     Console.WriteLine("You're a dummy.");
                     break;

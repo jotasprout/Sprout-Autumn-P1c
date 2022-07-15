@@ -101,23 +101,23 @@ public class TicketRepository
         List<Ticket> ticketIWant = new List<Ticket>(); 
         GetTickets(byTicketID);
         return ticketIWant;  
-        Console.WriteLine("What do you want to do?");
-        Console.WriteLine("[1] Resolve this ticket.");
-        Console.WriteLine("[2] Exit.");
-        string input = Console.ReadLine();
-        switch (input)
-        {
-            case "1": // Resolve
-                ResolveThisTicket(ticketID);
-                break;
-            case "2": // Exit
-                Console.WriteLine("Goodbye.");
-                Environment.Exit(0);
-                break;
-            default:
-                Console.WriteLine("What kind of nonsense was that?");
-                break;
-        }        
+        // Console.WriteLine("What do you want to do?");
+        // Console.WriteLine("[1] Resolve this ticket.");
+        // Console.WriteLine("[2] Exit.");
+        // string input = Console.ReadLine();
+        // switch (input)
+        // {
+        //     case "1": // Resolve
+        //         ResolveThisTicket(ticketID);
+        //         break;
+        //     case "2": // Exit
+        //         Console.WriteLine("Goodbye.");
+        //         Environment.Exit(0);
+        //         break;
+        //     default:
+        //         Console.WriteLine("What kind of nonsense was that?");
+        //         break;
+        // }        
     }
 
     public List<Ticket> ResolveThisTicket(string ticketID)
