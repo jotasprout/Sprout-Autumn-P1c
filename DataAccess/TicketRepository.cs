@@ -201,10 +201,10 @@ public class TicketRepository
                 //throw new UsernameNotAvailable();
             }
         }
-        // catch (UsernameNotAvailable e)
-        // {
-        //     Console.WriteLine(e.Message);
-        // }
+        catch (UsernameNotAvailable e)
+        {
+            Console.WriteLine(e.Message);
+        }
         return AllMyTickets;
     }
 

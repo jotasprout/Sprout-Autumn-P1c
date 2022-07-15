@@ -14,8 +14,6 @@ namespace DataAccess
 
         public static string connectionString = "Server=tcp:autumn-server.database.windows.net,1433;Initial Catalog=AutumnDB;Persist Security Info=False;User ID=supremeadmin;Password=" + SensitiveVariables.dbpassword + ";MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
-
-
         public List<User> GetUsers(string those)
         {
 
@@ -23,7 +21,6 @@ namespace DataAccess
             User tempUserHoldingRole = new User();
 
             SqlConnection makeConnection = new SqlConnection(connectionString);
-
             SqlCommand getEveryUser = new SqlCommand(those, makeConnection);
 
             try
@@ -48,9 +45,6 @@ namespace DataAccess
         }
 
 
-
-
-
         public List<User> GetAllUsers()
         {
             List<User> allUsers = new List<User>();
@@ -59,19 +53,15 @@ namespace DataAccess
         }
 
 
-        //public User GetUserIDbyUserName();
-
         public User GetUserByUserName(string userWanted)
         {
 
-            // List<User> thisUser = new List<User>();
             User thisUser = new User();
             User tempUserHoldingRole = new User();
 
             string getThisUser = "select * from AutumnERS.users where userName ='" + userWanted + "';";
 
             SqlConnection makeConnection = new SqlConnection(connectionString);
-
             SqlCommand goGetThisUser = new SqlCommand(getThisUser, makeConnection);
 
             try
@@ -80,7 +70,6 @@ namespace DataAccess
                 SqlDataReader reader = goGetThisUser.ExecuteReader();
                 while (reader.Read())
                 {
-                    // Console.WriteLine("\t{0}\t{1}\t{2}\t{3}", reader[0], reader[1], reader[2], reader[3]);
                     int RoleFromDB = tempUserHoldingRole.userRoleToInt((string)reader[3]); 
                     thisUser = new User((int)reader[0], (string)reader[1], (string)reader[2], (userRole)RoleFromDB);
                 }
@@ -98,9 +87,33 @@ namespace DataAccess
 
 
 
-        public User GetUserByUserID()
+        public User GetUserByUserID(string userID)
         {
-            throw new ResourceNotFound();
+            User thisUser = new User();
+            User tempUserHoldingRole = new User();
+
+            string getThisUser = "select * from AutumnERS.users where userID ='" + userID + "';";
+
+            SqlConnection makeConnection = new SqlConnection(connectionString);
+            SqlCommand goGetThisUser = new SqlCommand(getThisUser, makeConnection);
+
+            try
+            {
+                makeConnection.Open();
+                SqlDataReader reader = goGetThisUser.ExecuteReader();
+                while (reader.Read())
+                {
+                    int RoleFromDB = tempUserHoldingRole.userRoleToInt((string)reader[3]); 
+                    thisUser = new User((int)reader[0], (string)reader[1], (string)reader[2], (userRole)RoleFromDB);
+                }
+                reader.Close();
+                makeConnection.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return thisUser;
         }
 
     }

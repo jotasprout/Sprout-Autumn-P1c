@@ -13,12 +13,6 @@ namespace Services
             throw new ResourceNotFound();
         }
 
-        // UPDATE/process = approve or deny 
-
-
-
-        // Get a ticket by ticketID
-
         public List<Ticket> GetTicketsByTicketID()
         {
             throw new ResourceNotFound();
@@ -34,22 +28,16 @@ namespace Services
             throw new ResourceNotFound();
         }               
 
-        // Get all tickets by userID
-
         public List<Ticket> GetTicketsByUserID()
         {
             throw new ResourceNotFound();
         }
 
-        // GET TICKET BY STATUS
-
         public List<Ticket> GetTicketsByStatus()
         {
             throw new ResourceNotFound();
         }
-
-     
-        
+ 
     }
 }
 

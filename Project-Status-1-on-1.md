@@ -10,15 +10,13 @@
 
 ## Working Functionality
 - Initial menu offers: Login, Register, Exit
-- Depending on userRole (Manager or Employee), logging in displays a menu with their respective choices
-    - AuthServices saves current user's info long enough to display the Employee Menu but then loses it
-
-    - **EmployeeMenu:** Can view their own tickets, or create new ticket
-        - getTicketsByUserName works but I can't get the app to remember the user's information long enough to use it here. OMG I just figured out how! DisplayEmployeeMenu and DisplayManagerMenu will both take arguments that include userRole!
+    - **EmployeeMenu:** 
+        - Can view their own tickets
+        - Create new ticket
 
     - **ManagerMenu:** Choices:
-        - Create a New Ticket IN PROGRESS
-        - View My Tickets (uses getTicketsByUserName see above)
+        - Create a New Ticket - YES
+        - View My Tickets - YES
         - View Ticket by TicketID - YES
         - View Tickets by UserName YES
         - View Tickets by Status - YES
@@ -28,8 +26,6 @@
 - Login
 
 ## Major To Do
-- Finish CreateTicket method
-- Figure out how to keep current user's creds in memory across classes (just did!)
 - WebAPI
 - Controllers
 - Endpoint mapping
@@ -37,7 +33,6 @@
 
 ## Minor To Do
 - ConnectionFactory
-- Returned tickets show usernames
 
 ## Wish List
-- Total amount for all requests by author_fk
+- Returned tickets show usernames
