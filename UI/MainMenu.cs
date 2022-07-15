@@ -71,7 +71,6 @@ namespace UI
                     Console.WriteLine("Access Denied");
                     Environment.Exit(0);
                 }
-
             }
             catch (ResourceNotFound)
             {
@@ -84,7 +83,6 @@ namespace UI
                 Environment.Exit(0);
             }
             //Environment.Exit(0);
-
         }
 
 
@@ -113,11 +111,8 @@ namespace UI
                     Console.WriteLine("Thank you.");
                     break;
             }
-
             Console.WriteLine(" Attempting to register userName: " + maybeUserName + ", password: " + maybePassword + ", Role: " + maybeRole + ".");
-
             User maybeUser = new AuthServices().RegisterUser(maybeUserName, maybePassword, maybeRole);
-
             //Environment.Exit(0);
             DisplayLoginUI();
         }
@@ -190,8 +185,7 @@ namespace UI
                     Console.WriteLine("Here is a list of all Tickets:");
                     TicketRepository tickets = new TicketRepository();
                     tickets.GetAllTickets();
-                    break;     
-                                                     
+                    break;                                       
                 default:
                     Console.WriteLine("You're a dummy.");
                     break;
