@@ -20,15 +20,30 @@ public class TicketRepository
         List<Ticket> ticketIWant = new List<Ticket>(); 
         GetTickets(byTicketID);
         return ticketIWant;  
+        Console.WriteLine("What do you want to do?");
+        Console.WriteLine("[1] Resolve this ticket.");
+        Console.WriteLine("[2] Exit.");
+        string input = Console.ReadLine();
+        switch (input)
+        {
+            case "1": // Resolve
+                ResolveTicket(ticketID);
+                break;
+            case "2": // Exit
+                Console.WriteLine("Goodbye.");
+                Environment.Exit(0);
+                break;
+            default:
+                Console.WriteLine("What kind of nonsense was that?");
+                break;
+        }        
     }
 
     public List<Ticket> GetTickets(string those)
     {
 
         List<Ticket> tickets = new List<Ticket>();
-
         SqlConnection makeConnection = new SqlConnection(connectionString);
-
         SqlCommand getEveryTicket = new SqlCommand(those, makeConnection);
 
         try
@@ -77,23 +92,48 @@ public class TicketRepository
         return TicketsFromPeepIWant;
     }
 
-    // UPDATE/process = approve or deny 
-//  UPDATE AutumnERS.tickets SET status = 'Approved' WHERE ticketID = 16;
+    public List<Ticket> ResolveTicketMenu(string ticketID)
+    {
+        Console.WriteLine("Approve or Deny?");
+        Console.WriteLine("[1] Approve");
+        Console.WriteLine("[2] Deny");
+        Console.WriteLine("[3] Exit.");            
+        string input = Console.ReadLine();
+        switch (input)
+        {
+            case "1": // Approve
+                ResolveThisTicket("Approved");
+                break;
+            case "2": // Deny
+                ResolveThisTicket("Denied");
+                Environment.Exit(0);                    
+                break;
+            case "3": // Exit
+                Console.WriteLine("Goodbye.");
+                Environment.Exit(0);                    
+                break;                    
+            default:
+                Console.WriteLine("What kind of nonsense was that?");
+                break;
+        } 
+    } 
 
+    public List<Ticket> GetTicketsByStatus(){
+        public string thoseStatusTickets = "select * from AutumnERS.tickets where status = '" + SocialServices.thatStatus + "';";
+        List<Ticket> statusTickets = new List<Ticket>();
+        GetTickets(thoseStatusTickets);
+        return statusTickets;
+    }  
 
-    //Get a ticket by ticketID
+        // UPDATE/process = approve or deny  
 
-
-
-
-
-
-
-
-
-
-
-
+    public List<Ticket> ResolveThisTicket(string ticketStatus)
+    {
+        string byTicketStatus = "select * from AutumnERS.tickets where ticketStatus = " + status + ";";
+        List<Ticket> ticketToUpdate = new List<Ticket>(); 
+        GetTickets(byTicketStatus);
+        return ticketToUpdate;  
+    }
 
 
     // public List<Ticket> CreateTicket(newTicket)
@@ -107,46 +147,18 @@ public class TicketRepository
 
     //     createThisTicket.Parameters.AddWithValue("@author", newTicket.)
 
-
-
     //     // List<Ticket> allTicketsByUserName = new List<Ticket>();
     //     // GetTickets(TicketsByUserName);
     //     // return allTicketsByUserName;
     //     throw new ResourceNotFound();
     // }
 
-
-
-
-    // Get all tickets by userID
-
-
     // GET TICKET BY STATUS
 
     /*   
-        public string thoseStatusTickets = "select * from AutumnERS.tickets where status = '" + SocialServices.thatStatus + "';";
-        public List<Ticket> GetTicketsByStatus(){
-            List<Ticket> statusTickets = new List<Ticket>();
-            GetTickets(thoseStatusTickets);
-            return statusTickets;
-        }    
+  
 
 
-        public bool CreateTicket(Ticket Ticket){
-
-        }
-
-        public List<Ticket> GetTicketByID(ticketID){
-
-        }
-
-        public List<Ticket> GetTicketsByUserName(userName){
-
-        }
-
-        public List<Ticket> resolveTicket(){
-
-        }  
 
     */
 }

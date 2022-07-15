@@ -129,10 +129,9 @@ namespace UI
         // Filter Tickets by Status     
 
         // RESOLVE TICKETS MENU
- 
-        // Console.WriteLine("[3] View Ticket by TicketID");  
-        // Console.WriteLine("[4] View Tickets by UserName");
         // Console.WriteLine("[5] View Tickets by Status");
+        // Which ticket do you want to resolve? 
+
 
         //User userLoggingIn = new User();
 
@@ -153,21 +152,18 @@ namespace UI
                 case "1": // Create
                     Console.WriteLine("Show prompts for creating a ticket.");
                     break;
-                case "2": // View
+                case "2": // All of MY tickets
                     Console.WriteLine("Here all your tickets:");
                     TicketRepository myTickets = new TicketRepository();
                     int myIDint = userLoggingIn.userID;
                     string myIDstring = myIDint.ToString();
                     myTickets.GetTicketsByUserID(myIDstring);
-                    break;
+                    break;                  
                 case "3": // View Ticket by TicketID
                     Console.WriteLine("Enter ticketID.");
                     string ticketIDString = Console.ReadLine();
                     TicketRepository TicketWithThisID = new TicketRepository();
                     TicketWithThisID.GrabTicketByTicketID(ticketIDString);                    
-                                            // int myIDint = userLoggingIn.userID;
-                                            // string myIDstring = myIDint.ToString();
-
                     break;
                 case "4": // View Tickets by UserName
                     Console.WriteLine("Which user do you want?");
@@ -175,8 +171,15 @@ namespace UI
                     TicketRepository TicketsFromPeepIWant = new TicketRepository();
                     TicketsFromPeepIWant.GetTicketsByUserName(userIWantTicketsFrom);
                     break;   
+                case "8": // View Tickets by UserID
+                    Console.WriteLine("Enter userID.");
+                    string userIDforTicketsFrom = Console.ReadLine();
+                    TicketRepository TicketsFromThisUserID = new TicketRepository();
+                    TicketsFromThisUserID.GetTicketsByUserID(userIDforTicketsFrom);
+                    break;                     
                 case "5": // View Tickets by Status
-                    Console.WriteLine("Ask for status.");
+                    Console.WriteLine("Select a Status.");
+                    string maybeTask = Console.ReadLine();
                     break;
                 case "6": // View Entire User List
                     Console.WriteLine("Here is a list of all users:");
@@ -188,12 +191,7 @@ namespace UI
                     TicketRepository tickets = new TicketRepository();
                     tickets.GetAllTickets();
                     break;     
-                case "8": // View Tickets by UserID
-                    Console.WriteLine("Enter userID.");
-                    string userIDforTicketsFrom = Console.ReadLine();
-                    TicketRepository TicketsFromThisUserID = new TicketRepository();
-                    TicketsFromThisUserID.GetTicketsByUserID(userIDforTicketsFrom);
-                    break;                                                      
+                                                     
                 default:
                     Console.WriteLine("You're a dummy.");
                     break;
