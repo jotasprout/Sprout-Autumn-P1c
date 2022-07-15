@@ -74,7 +74,7 @@ public class TicketRepository
         Console.WriteLine("[2] Denied");
         Console.WriteLine("[3] Pending");            
         string thisStatus = Console.ReadLine();
-        switch (input)
+        switch (thisStatus)
         {
             case "1": // Approved
                 thisStatus = "Approved";
@@ -89,7 +89,7 @@ public class TicketRepository
                 Console.WriteLine("What kind of nonsense was that?");
                 break;
         }         
-        public string thoseStatusTickets = "select * from AutumnERS.tickets where status = '" + thisStatus + "';";
+        string thoseStatusTickets = "select * from AutumnERS.tickets where status = '" + thisStatus + "';";
         List<Ticket> statusTickets = new List<Ticket>();
         GetTickets(thoseStatusTickets);
         return statusTickets;
@@ -128,7 +128,7 @@ public class TicketRepository
         Console.WriteLine("[1] Approve");
         Console.WriteLine("[2] Deny");
         string newStatus = Console.ReadLine();
-        switch (input)
+        switch (newStatus)
         {
             case "1": // Approve
                 newStatus = "Approved";
