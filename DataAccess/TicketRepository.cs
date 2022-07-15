@@ -67,12 +67,32 @@ public class TicketRepository
         return TicketsFromPeepIWant;
     }
 
-    public List<Ticket> GetTicketsByStatus(){
-        public string thoseStatusTickets = "select * from AutumnERS.tickets where status = '" + SocialServices.thatStatus + "';";
+    public List<Ticket> GetTicketsByStatus()
+    {
+        Console.WriteLine("Choose a status.");
+        Console.WriteLine("[1] Approved");
+        Console.WriteLine("[2] Denied");
+        Console.WriteLine("[3] Pending");            
+        string thisStatus = Console.ReadLine();
+        switch (input)
+        {
+            case "1": // Approved
+                thisStatus = "Approved";
+                break;
+            case "2": // Denied
+                thisStatus = "Denied";                   
+                break;  
+            case "3": // Pending
+                thisStatus = "Pending";                    
+                break;                    
+            default:
+                Console.WriteLine("What kind of nonsense was that?");
+                break;
+        }         
+        public string thoseStatusTickets = "select * from AutumnERS.tickets where status = '" + thisStatus + "';";
         List<Ticket> statusTickets = new List<Ticket>();
         GetTickets(thoseStatusTickets);
         return statusTickets;
-
     }  
 
     public List<Ticket> GrabTicketByTicketID(string ticketID)
@@ -99,32 +119,6 @@ public class TicketRepository
                 break;
         }        
     }
-
-    public List<Ticket> ResolveTicketMenu(string ticketID)
-    {
-        Console.WriteLine("Approve or Deny?");
-        Console.WriteLine("[1] Approve");
-        Console.WriteLine("[2] Deny");
-        Console.WriteLine("[3] Exit.");            
-        string input = Console.ReadLine();
-        switch (input)
-        {
-            case "1": // Approve
-                ResolveThisTicket("Approved");
-                break;
-            case "2": // Deny
-                ResolveThisTicket("Denied");
-                Environment.Exit(0);                    
-                break;
-            case "3": // Exit
-                Console.WriteLine("Goodbye.");
-                Environment.Exit(0);                    
-                break;                    
-            default:
-                Console.WriteLine("What kind of nonsense was that?");
-                break;
-        } 
-    } 
 
     public List<Ticket> ResolveThisTicket(string ticketID)
     {
@@ -155,7 +149,8 @@ public class TicketRepository
         updateTicket.Parameters.AddWithValue("@ticketID", ticketID);
         updateTicket.Parameters.AddWithValue("@status", newStatus);
 
-        try{
+        try
+        {
             makeConnection.Open();
             int itWorked = updateTicket.ExecuteNonQuery();
             makeConnection.Close();

@@ -173,8 +173,9 @@ namespace UI
                     TicketsFromThisUserID.GetTicketsByUserID(userIDforTicketsFrom);
                     break;                     
                 case "5": // View Tickets by Status
-                    Console.WriteLine("Select a Status.");
-                    string maybeTask = Console.ReadLine();
+                    TicketRepository TicketsByStatus = new TicketRepository();
+                    TicketsByStatus.GetTicketsByStatus();
+                    //GetTicketsByStatus();
                     break;
                 case "6": // View Entire User List
                     Console.WriteLine("Here is a list of all users:");
