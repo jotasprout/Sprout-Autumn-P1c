@@ -141,7 +141,8 @@ public class TicketRepository
                 break;
         } 
 
-        string updateTicketStatement = "UPDATE AutumnERS.tickets SET status = '@status' WHERE ticketID = @ticketID;";
+        string updateTicketStatement = "UPDATE AutumnERS.tickets SET status = @status WHERE ticketID = @ticketID;";
+        //string updateTicketStatement = "UPDATE AutumnERS.tickets SET status = '" + newStatus + "' WHERE ticketID = " + ticketID + ";";
         // UPDATE AutumnERS.tickets SET status = 'Approved' WHERE ticketID = 16;
         SqlConnection makeConnection = new SqlConnection(connectionString);
         SqlCommand updateTicket = new SqlCommand(updateTicketStatement, makeConnection);
