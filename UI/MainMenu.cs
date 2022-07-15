@@ -185,9 +185,9 @@ namespace UI
                     break;     
                 case "8": // Resolve a ticket
                     Console.WriteLine("Enter ticketID.");
-                    string ticketIDString = Console.ReadLine();
-                    TicketRepository TicketWithThisID = new TicketRepository();
-                    TicketWithThisID.ResolveThisTicket(ticketIDString);                    
+                    string ticketIDtoResolve = Console.ReadLine();
+                    TicketRepository resolvingTicket = new TicketRepository();
+                    resolvingTicket.ResolveThisTicket(ticketIDtoResolve);                  
                     break;                      
                 case "9": // View Entire User List
                     Console.WriteLine("Here is a list of all users:");
