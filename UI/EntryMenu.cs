@@ -55,11 +55,13 @@ namespace UI
                 {
                     if (userKnocking.userRole == userRole.Manager)
                     {
-                        DisplayManagerMainMenu(userKnocking);
+                        ManagerMainMenu MgrMenu = new ManagerMainMenu();
+                        MgrMenu.DisplayManagerMainMenu(userKnocking);
                     }
                     else 
                     {
-                        DisplayEmployeeMenu(userKnocking);
+                        EmployeeMenu EmpMenu = new EmployeeMenu();
+                        EmpMenu.DisplayEmployeeMenu(userKnocking);
                     }
                 }
                 else

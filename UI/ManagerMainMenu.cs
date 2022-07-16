@@ -1,7 +1,7 @@
 ﻿using System;
 using Services;
 using Models;
-using DataAccess;
+//using DataAccess;
 using CustomExceptions;
 
 namespace UI
@@ -17,16 +17,12 @@ namespace UI
             switch (maybeTask)
             {
                 case "1": // Employees
-                    Console.WriteLine("Here is a list of all users:");
-                    UserRepository peeps = new UserRepository();
-                    peeps.GetAllUsers();
+                    ManagerUserMenu MgrUser = new ManagerUserMenu();
+                    MgrUser.DisplayManagerMainMenu(userKnocking);
                     break;                 
                 case "2": // Tickets
-                    Console.WriteLine("Here are all your tickets:");
-                    TicketRepository myTickets = new TicketRepository();
-                    int myIDint = CurrentUserIn.userID;
-                    string myIDstring = myIDint.ToString();
-                    myTickets.GetTicketsByUserID(myIDstring);
+                    ManagerTicketMenu MgrTix = new ManagerTicketMenu();
+                    MgrTix.DisplayManagerTicketMenu(userKnocking);
                     break;                  
                 default:
                     Console.WriteLine("You're a dummy.");

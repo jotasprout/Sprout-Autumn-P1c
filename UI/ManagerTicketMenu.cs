@@ -1,7 +1,7 @@
 ﻿using System;
 using Services;
 using Models;
-using DataAccess;
+//using DataAccess;
 using CustomExceptions;
 
 namespace UI
@@ -12,7 +12,7 @@ namespace UI
         private static TicketServices _tix;
         public ManagerUserMenu()
         {
-            _tix = new TicketServices(new IticketDAO(_tix));
+            _tix = new TicketServices(new IticketDAO(new TicketRepository()));
         }
 
         public void DisplayManagerTicketMenu(User CurrentUserIn)

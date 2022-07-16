@@ -14,32 +14,30 @@ namespace Services
             _repo = repo;
         }
 
-        public List<Ticket> CreateTicket()
+
+
+
+        public List<User> GetUsers(string those)
         {
             throw new ResourceNotFound();
         }
 
-        public List<Ticket> GetTicketsByTicketID()
+        public List<User> GetAllUsers()
         {
             throw new ResourceNotFound();
         }
 
-        public List<Ticket> GetMyTickets()
+        public User GetUserByUserName(string userWanted)
+        {
+            throw new ResourceNotFound();
+        }             
+
+        public User CreateUser(User newUser)
         {
             throw new ResourceNotFound();
         }
 
-        public List<Ticket> FilterTicketsByCost()
-        {
-            throw new ResourceNotFound();
-        }               
-
-        public List<Ticket> GetTicketsByUserID()
-        {
-            throw new ResourceNotFound();
-        }
-
-        public List<Ticket> GetTicketsByStatus()
+        public User GetUserByUserID(string userID)
         {
             throw new ResourceNotFound();
         }

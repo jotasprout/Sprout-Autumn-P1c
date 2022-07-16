@@ -1,7 +1,7 @@
 ﻿using UI;
 // using DataAccess;
 
-EntryMenu enter = new Menu();
+EntryMenu enter = new EntryMenu();
 enter.Begin();
 
 // UserRepository peepIWant = new UserRepository();
