@@ -10,6 +10,7 @@ namespace UI
     {
         public void DisplayManagerMainMenu(User CurrentUserIn)
         {
+            User userKnocking = CurrentUserIn;
             Console.WriteLine("Manage:");
             Console.WriteLine("[1] Employees");
             Console.WriteLine("[2] Tickets");                     
@@ -18,7 +19,7 @@ namespace UI
             {
                 case "1": // Employees
                     ManagerUserMenu MgrUser = new ManagerUserMenu();
-                    MgrUser.DisplayManagerMainMenu(userKnocking);
+                    MgrUser.DisplayManagerUserMenu(userKnocking);
                     break;                 
                 case "2": // Tickets
                     ManagerTicketMenu MgrTix = new ManagerTicketMenu();

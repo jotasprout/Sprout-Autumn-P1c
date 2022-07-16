@@ -1,7 +1,7 @@
 ﻿using System;
 using Services;
 using Models;
-//using DataAccess;
+using DataAccess;
 using CustomExceptions;
 
 namespace UI
@@ -10,10 +10,14 @@ namespace UI
     {
         
         private static TicketServices _tix;
+        public EmployeeMenu(TicketServices tix)
+        {
+            _tix = tix;
+        }
         public EmployeeMenu()
         {
-            _tix = new TicketServices(new IticketDAO(new TicketRepository()));
-        }
+            _tix = new TicketServices(new TicketRepository());
+        }        
 
         public void DisplayEmployeeMenu(User CurrentUserIn)
         {
@@ -24,15 +28,13 @@ namespace UI
             switch (maybeTask)
             {
                 case "1": // Create
-                    _tix newTicket = _tix;
-                    newTicket.CreateTicket(CurrentUserIn);                    
+                    _tix.CreateTicket(CurrentUserIn);                    
                     break;
                 case "2": // View
                     Console.WriteLine("Tickets submitted by .");
-                    TicketRepository myTickets = _tix;
                     int myIDint = CurrentUserIn.userID;
                     string myIDstring = myIDint.ToString();
-                    myTickets.GetTicketsByUserID(myIDstring);
+                    _tix.GetTicketsByUserID(myIDstring);
                     break;
                 default:
                     Console.WriteLine("You're a dummy.");

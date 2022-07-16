@@ -9,11 +9,18 @@ namespace UI
     public class ManagerUserMenu
     {
         private static UserServices _user;
+        public ManagerUserMenu(UserServices user)
+        {
+            _user = user;
+        }
+                
         public ManagerUserMenu()
         {
-            _user = new UserServices(new IuserDAO(new UserRepository()));
+            _user = new UserServices(new UserRepository());
         }
         
+
+
         public void DisplayManagerUserMenu(User CurrentUserIn)
         {
             Console.WriteLine("Find:");
@@ -25,20 +32,17 @@ namespace UI
             {         
                 case "1": // View Entire User List
                     Console.WriteLine("Here is a list of all users:");
-                    UserRepository peeps = _user;
-                    peeps.GetAllUsers();
+                    _user.GetAllUsers();
                     break;   
-                case "2": // View Users by UserName
+                case "2": // View User by UserName
                     Console.WriteLine("Which user do you want?");
                     string userNameIWant = Console.ReadLine();
-                    UserRepository PeepIWant = _user;
-                    PeepIWant.GetUsersByUserName(userNameIWant);
+                    _user.GetUserByUserName(userNameIWant);
                     break;            
                 case "3": // View Users by UserID
                     Console.WriteLine("Enter userID.");
                     string userIDfor = Console.ReadLine();
-                    UserRepository ThisUserID = _user;
-                    ThisUserID.GetUsersByUserID(userIDfor);
+                    _user.GetUserByUserID(userIDfor);
                     break;                                         
                 default:
                     Console.WriteLine("You're a dummy.");

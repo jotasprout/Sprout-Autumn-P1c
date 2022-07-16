@@ -13,7 +13,10 @@ namespace Services
         {
             _repo = repo;
         }
-
+        public UserServices()
+        {
+            _repo = new UserRepository();
+        }
 
 
 
