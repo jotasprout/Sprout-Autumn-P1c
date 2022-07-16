@@ -1,6 +1,5 @@
 ﻿using Models;
 using Sensitive;
-// using Services;
 using CustomExceptions;
 using System;
 using System.Data.SqlClient;
@@ -17,6 +16,11 @@ namespace DataAccess
         public UserRepository()
         {
             _connectionFactory = ConnectionFactory.GetInstance(File.ReadAllText("../Sensitive/connectionString.txt"));
+        }
+
+        public UserRepository(ConnectionFactory connectionFactory)
+        {
+            _connectionFactory = connectionFactory;
         }
 
         public List<User> GetUsers(string those)
@@ -44,7 +48,7 @@ namespace DataAccess
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                throw new Exception();
             }
             return users;
         }
@@ -81,15 +85,50 @@ namespace DataAccess
                 reader.Close();
                 makeConnection.Close();
             }
-            catch (Exception e)
+            catch (ResourceNotFound e)
             {
-                Console.WriteLine(e.Message);
+                throw new ResourceNotFound();
             }
             return thisUser;
         }
 
 
+        public User CreateUser(User newUser)
+        {
+            // will use CreateUser
+            User thisUser = newUser;
 
+            string putUserInDB = "insert into AutumnERS.users (userName, password, userRole) values (@userName, @password, @userRole);";
+
+            SqlConnection makeConnection = _connectionFactory.GetConnection();
+            
+            SqlCommand saveUser = new SqlCommand(putUserInDB, makeConnection);
+            
+            saveUser.Parameters.AddWithValue("@userName", thisUser.userName);
+            saveUser.Parameters.AddWithValue("@password", thisUser.password);
+            saveUser.Parameters.AddWithValue("@userRole", thisUser.userRoleToString(thisUser.userRole));         
+
+            try{
+                makeConnection.Open();
+                int itWorked = saveUser.ExecuteNonQuery();
+                makeConnection.Close();
+                if (itWorked != 0)
+                {
+                    Console.WriteLine("Welcome to our club, " + thisUser.userName + "!");
+                    User userWhy = GetUserByUserName(thisUser.userName);
+                    return userWhy;
+                }
+                else
+                {
+                    Console.WriteLine("Sorry, something didn't work.");
+                    throw new Exception();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }            
+        }
 
 
         public User GetUserByUserID(string userID)

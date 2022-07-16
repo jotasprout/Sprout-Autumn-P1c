@@ -1,7 +1,6 @@
 ﻿using Models;
 using Sensitive;
 using CustomExceptions;
-// using Services;
 using System.Data.SqlClient;
 
 namespace DataAccess;
@@ -14,6 +13,11 @@ public class TicketRepository
     public TicketRepository()
     {
         _connectionFactory = ConnectionFactory.GetInstance(File.ReadAllText("../Sensitive/connectionString.txt"));
+    }
+
+    public TicketRepository(ConnectionFactory connectionFactory)
+    {
+        _connectionFactory = connectionFactory;
     }
 
     public string thoseAll = "select * from AutumnERS.tickets;";

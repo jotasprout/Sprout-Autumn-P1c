@@ -9,9 +9,19 @@ namespace Services;
 
 public class AuthServices
 {
-    public User CurrentUser = new User();
+    private readonly UserRepository _user;
 
-    public static string connectionString = "Server=tcp:autumn-server.database.windows.net,1433;Initial Catalog=AutumnDB;Persist Security Info=False;User ID=supremeadmin;Password=" + SensitiveVariables.dbpassword + ";MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+    public User CurrentUser = new User();    
+
+    public AuthServices()
+    {
+        _user = new UserRepository();
+    }
+
+    // public AuthServices(ConnectionFactory connectionFactory)
+    // {
+    //     something goes here;
+    // }
 
     public User LoginUser(string userName, string password)
     {
@@ -20,7 +30,7 @@ public class AuthServices
         try
         {
             // retrieve user from database using DataAccess method
-            User lookInside = new UserRepository().GetUserByUserName(userName);
+            User lookInside = _user.GetUserByUserName(userName);
             // if password for parameter user matches password from database user
             if (wantsInside.userName != lookInside.userName)
             {
@@ -31,7 +41,7 @@ public class AuthServices
             // return user to UI layer
             {
                 CurrentUser = lookInside;
-                //Console.WriteLine("You are logged in as userName: " + CurrentUser.userName + ", with userID: " + CurrentUser.userID + " and password: " + CurrentUser.password + " is a " + CurrentUser.userRole);
+                Console.WriteLine("You are logged in as userName: " + CurrentUser.userName + ", with userID: " + CurrentUser.userID + " and password: " + CurrentUser.password + " is a " + CurrentUser.userRole);
                 //return CurrentUser;
                 return lookInside;
             }
@@ -60,48 +70,33 @@ public class AuthServices
 
     public User RegisterUser(string userName, string password, userRole userRole)
     {
-        // will use CreateUser
         User thisUser = new User(userName, password, userRole);
 
-        string putUserInDB = "insert into AutumnERS.users (userName, password, userRole) values (@userName, @password, @userRole);";
-
-        SqlConnection makeConnection = new SqlConnection(connectionString);
-        
-        SqlCommand saveUser = new SqlCommand(putUserInDB, makeConnection);
-        
-        saveUser.Parameters.AddWithValue("@userName", thisUser.userName);
-        saveUser.Parameters.AddWithValue("@password", thisUser.password);
-        saveUser.Parameters.AddWithValue("@userRole", thisUser.userRoleToString(thisUser.userRole));
-
-        User userWannabe = new UserRepository().GetUserByUserName(userName);
-        // if password for parameter user matches password from database user
-        if (userWannabe.userName != thisUser.userName)
-        // return user to UI layer
+        try
         {
-            try{
-                makeConnection.Open();
-                int itWorked = saveUser.ExecuteNonQuery();
-                makeConnection.Close();
-                if (itWorked != 0)
-                {
-                    Console.WriteLine("Welcome to our club, " + thisUser.userName + "!");
-                    User userWhy = new UserRepository().GetUserByUserName(thisUser.userName);
-                    return userWhy;
-                }
-                else
-                {
-                    Console.WriteLine("Sorry, you're not welcome in our club, " + thisUser.userName + ".");
-                    throw new UsernameNotAvailable();
-                }
-            }
-            catch (UsernameNotAvailable e)
+            User userWannabe = _user.GetUserByUserName(userName);
+            if (userWannabe.userName == thisUser.userName)
             {
-                Console.WriteLine(e.Message);
+                throw new UsernameNotAvailable();
             }
-            //return new User();
+            else if (thisUser.userName == "")
+            {
+                throw new UsernameNotAvailable();
+            }
+            else 
+            {
+                User thatUser = _user.CreateUser(thisUser);
+                return thatUser;
+            }
         }
-    return thisUser;
+        catch(UsernameNotAvailable)
+        {
+            throw new UsernameNotAvailable();
+        }
+        catch(ResourceNotFound)
+        {
+            return _user.CreateUser(thisUser);
+        }
     }
-
 }
 
