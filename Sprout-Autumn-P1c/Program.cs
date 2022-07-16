@@ -1,8 +1,8 @@
 ﻿using UI;
 // using DataAccess;
 
-MainMenu intro = new MainMenu();
-intro.Begin();
+EntryMenu enter = new Menu();
+enter.Begin();
 
 // UserRepository peepIWant = new UserRepository();
 // Console.WriteLine("Which user do you want?");

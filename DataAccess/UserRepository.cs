@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace DataAccess
 {
-    public class UserRepository
+    public class UserRepository : IuserDAO
     {
 
         public string thoseAll = "select * from AutumnERS.users;";

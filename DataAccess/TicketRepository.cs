@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace DataAccess;
 
-public class TicketRepository
+public class TicketRepository : IticketDAO
 {
 
     private readonly ConnectionFactory _connectionFactory;

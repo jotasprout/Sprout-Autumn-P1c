@@ -1,12 +1,18 @@
 ﻿using Models;
 using CustomExceptions;
-//using DataAccess;
+using DataAccess;
 using System;
 
 namespace Services
 {
     public class UserServices
     {
+
+        private readonly IuserDAO _repo;
+        public UserServices(IuserDAO repo)
+        {
+            _repo = repo;
+        }
 
         public List<Ticket> CreateTicket()
         {
