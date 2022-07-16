@@ -6,11 +6,16 @@ using System.Data.SqlClient;
 
 namespace DataAccess;
 
-// The only purpose of DAO or DataAccess layer is to talk to the database
-
 public class TicketRepository
 {
-    public static string connectionString = "Server=tcp:autumn-server.database.windows.net,1433;Initial Catalog=AutumnDB;Persist Security Info=False;User ID=supremeadmin;Password=" + SensitiveVariables.dbpassword + ";MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+    public static string THISWASMYCONNECTIONSTRING = "Server=tcp:autumn-server.database.windows.net,1433;Initial Catalog=AutumnDB;Persist Security Info=False;User ID=supremeadmin;Password=" + SensitiveVariables.dbpassword + ";MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+
+    private readonly ConnectionFactory connectionThing;
+
+    public TicketRepository()
+    {
+        connectionThing = ConnectionFactory.GetInstance(File.ReadAllText("../Sensitive/connectionString.txt"));
+    }
 
     public string thoseAll = "select * from AutumnERS.tickets;";
 
@@ -18,7 +23,8 @@ public class TicketRepository
     {
 
         List<Ticket> tickets = new List<Ticket>();
-        SqlConnection makeConnection = new SqlConnection(connectionString);
+        //SqlConnection makeConnection = new SqlConnection(connectionString);
+        SqlConnection makeConnection = connectionThing.GetConnection();
         SqlCommand getEveryTicket = new SqlCommand(those, makeConnection);
 
         try
@@ -132,7 +138,7 @@ public class TicketRepository
         string updateTicketStatement = "UPDATE AutumnERS.tickets SET status = @status, resolver_fk = @myIDint WHERE ticketID = @ticketID;";
         //string updateTicketStatement = "UPDATE AutumnERS.tickets SET status = '" + newStatus + "', resolver_fk =  WHERE ticketID = " + ticketID + ";";
         // UPDATE AutumnERS.tickets SET status = 'Approved' WHERE ticketID = 16;
-        SqlConnection makeConnection = new SqlConnection(connectionString);
+        SqlConnection makeConnection = connectionThing.GetConnection();
         SqlCommand updateTicket = new SqlCommand(updateTicketStatement, makeConnection);
         
         updateTicket.Parameters.AddWithValue("@ticketID", ticketID);
@@ -181,7 +187,7 @@ public class TicketRepository
 
         string createTicketSQL = "insert into AutumnERS.tickets (author_fk, description, amount) values (@author, @description, @amount);";
 
-        SqlConnection makeConnection = new SqlConnection(connectionString);
+        SqlConnection makeConnection = connectionThing.GetConnection();
         SqlCommand createThisTicket = new SqlCommand(createTicketSQL, makeConnection);
 
         createThisTicket.Parameters.AddWithValue("@author", myIDstring);

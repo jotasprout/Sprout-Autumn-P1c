@@ -12,7 +12,14 @@ namespace DataAccess
 
         public string thoseAll = "select * from AutumnERS.users;";
 
-        public static string connectionString = "Server=tcp:autumn-server.database.windows.net,1433;Initial Catalog=AutumnDB;Persist Security Info=False;User ID=supremeadmin;Password=" + SensitiveVariables.dbpassword + ";MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        public static string THISWASMYCONNECTIONSTRING = "Server=tcp:autumn-server.database.windows.net,1433;Initial Catalog=AutumnDB;Persist Security Info=False;User ID=supremeadmin;Password=" + SensitiveVariables.dbpassword + ";MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+
+        private readonly ConnectionFactory connectionThing;
+
+        public UserRepository()
+        {
+            connectionThing = ConnectionFactory.GetInstance(File.ReadAllText("../Sensitive/connectionString.txt"));
+        }
 
         public List<User> GetUsers(string those)
         {
@@ -20,7 +27,7 @@ namespace DataAccess
             List<User> users = new List<User>();
             User tempUserHoldingRole = new User();
 
-            SqlConnection makeConnection = new SqlConnection(connectionString);
+            SqlConnection makeConnection = connectionThing.GetConnection();
             SqlCommand getEveryUser = new SqlCommand(those, makeConnection);
 
             try
@@ -61,7 +68,7 @@ namespace DataAccess
 
             string getThisUser = "select * from AutumnERS.users where userName ='" + userWanted + "';";
 
-            SqlConnection makeConnection = new SqlConnection(connectionString);
+            SqlConnection makeConnection = connectionThing.GetConnection();
             SqlCommand goGetThisUser = new SqlCommand(getThisUser, makeConnection);
 
             try
@@ -94,7 +101,7 @@ namespace DataAccess
 
             string getThisUser = "select * from AutumnERS.users where userID ='" + userID + "';";
 
-            SqlConnection makeConnection = new SqlConnection(connectionString);
+            SqlConnection makeConnection = connectionThing.GetConnection();
             SqlCommand goGetThisUser = new SqlCommand(getThisUser, makeConnection);
 
             try
