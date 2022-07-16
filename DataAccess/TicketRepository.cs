@@ -8,13 +8,12 @@ namespace DataAccess;
 
 public class TicketRepository
 {
-    public static string THISWASMYCONNECTIONSTRING = "Server=tcp:autumn-server.database.windows.net,1433;Initial Catalog=AutumnDB;Persist Security Info=False;User ID=supremeadmin;Password=" + SensitiveVariables.dbpassword + ";MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
-    private readonly ConnectionFactory connectionThing;
+    private readonly ConnectionFactory _connectionFactory;
 
     public TicketRepository()
     {
-        connectionThing = ConnectionFactory.GetInstance(File.ReadAllText("../Sensitive/connectionString.txt"));
+        _connectionFactory = ConnectionFactory.GetInstance(File.ReadAllText("../Sensitive/connectionString.txt"));
     }
 
     public string thoseAll = "select * from AutumnERS.tickets;";
@@ -23,8 +22,7 @@ public class TicketRepository
     {
 
         List<Ticket> tickets = new List<Ticket>();
-        //SqlConnection makeConnection = new SqlConnection(connectionString);
-        SqlConnection makeConnection = connectionThing.GetConnection();
+        SqlConnection makeConnection = _connectionFactory.GetConnection();
         SqlCommand getEveryTicket = new SqlCommand(those, makeConnection);
 
         try
@@ -138,7 +136,7 @@ public class TicketRepository
         string updateTicketStatement = "UPDATE AutumnERS.tickets SET status = @status, resolver_fk = @myIDint WHERE ticketID = @ticketID;";
         //string updateTicketStatement = "UPDATE AutumnERS.tickets SET status = '" + newStatus + "', resolver_fk =  WHERE ticketID = " + ticketID + ";";
         // UPDATE AutumnERS.tickets SET status = 'Approved' WHERE ticketID = 16;
-        SqlConnection makeConnection = connectionThing.GetConnection();
+        SqlConnection makeConnection = _connectionFactory.GetConnection();
         SqlCommand updateTicket = new SqlCommand(updateTicketStatement, makeConnection);
         
         updateTicket.Parameters.AddWithValue("@ticketID", ticketID);
@@ -187,7 +185,7 @@ public class TicketRepository
 
         string createTicketSQL = "insert into AutumnERS.tickets (author_fk, description, amount) values (@author, @description, @amount);";
 
-        SqlConnection makeConnection = connectionThing.GetConnection();
+        SqlConnection makeConnection = _connectionFactory.GetConnection();
         SqlCommand createThisTicket = new SqlCommand(createTicketSQL, makeConnection);
 
         createThisTicket.Parameters.AddWithValue("@author", myIDstring);

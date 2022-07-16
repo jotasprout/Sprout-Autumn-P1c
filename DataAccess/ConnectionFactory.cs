@@ -6,26 +6,26 @@ using System.Data.SqlClient;
     public class ConnectionFactory
     {
 
-        private static ConnectionFactory? instanceThing;
-        private readonly string connectionThing;
+        private static ConnectionFactory? _instance;
+        private readonly string _connectionFactory;
 
-        private ConnectionFactory(string connectionThingArg)
+        private ConnectionFactory(string connectionString)
         {
-            connectionThing = connectionThingArg;
+            _connectionFactory = connectionString;
         }
 
-        public static ConnectionFactory GetInstance(string connectionThingArg)
+        public static ConnectionFactory GetInstance(string connectionString)
         {
-            if(instanceThing == null)
+            if(_instance == null)
             {
-                instanceThing = new ConnectionFactory(connectionThingArg);
+                _instance = new ConnectionFactory(connectionString);
             }
-            return instanceThing;
+            return _instance;
         }
 
         public SqlConnection GetConnection()
         {
-            return new SqlConnection(connectionThing);
+            return new SqlConnection(_connectionFactory);
         }
 
     }
