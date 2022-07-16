@@ -16,48 +16,47 @@ namespace Services
         
         public List<Ticket> GetTicketsByUserName(string userIWantTicketsFor)
         {
-            throw new ResourceNotFound();
+            return _repo.GetTicketsByUserName(userIWantTicketsFor);
         }
 
         public List<Ticket> GrabTicketByTicketID(string ticketID)
         {
-            throw new ResourceNotFound();
+            return _repo.GrabTicketByTicketID(ticketID);
         }
 
         public List<Ticket> GetAllTickets()
         {
-            throw new ResourceNotFound();
+            return _repo.GetAllTickets();
         }
 
         public List<Ticket> CreateTicket(User CurrentUser)
         {
-            throw new ResourceNotFound();
+            return _repo.CreateTicket(CurrentUser);
         }
 
 
         public List<Ticket> GetTickets(string those)
         {
-            throw new ResourceNotFound();
+            return _repo.GetTickets(those);
 
         }
         
         
         public List<Ticket> GetTicketsByUserID(string userIWantTicketsFor)
         {
-            throw new ResourceNotFound();
-
+            return _repo.GetTicketsByUserID(userIWantTicketsFor);
         }
 
 
         public List<Ticket> GetTicketsByStatus()
         {
-            throw new ResourceNotFound();
+            return _repo.GetTicketsByStatus();
 
         }
         
         public List<Ticket> ResolveThisTicket(string ticketID, User CurrentUserIn)
         {
-            throw new ResourceNotFound();
+            return _repo.ResolveThisTicket(ticketID, CurrentUserIn);
 
         }
 

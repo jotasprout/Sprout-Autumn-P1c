@@ -22,27 +22,27 @@ namespace Services
 
         public List<User> GetUsers(string those)
         {
-            throw new ResourceNotFound();
+            return _repo.GetUsers(those);
         }
 
         public List<User> GetAllUsers()
         {
-            throw new ResourceNotFound();
+            return _repo.GetAllUsers();
         }
 
         public User GetUserByUserName(string userWanted)
         {
-            throw new ResourceNotFound();
+            return _repo.GetUserByUserName(userWanted);
         }             
 
         public User CreateUser(User newUser)
         {
-            throw new ResourceNotFound();
+            return _repo.CreateUser(newUser);
         }
 
         public User GetUserByUserID(string userID)
         {
-            throw new ResourceNotFound();
+            return _repo.GetUserByUserID(userID);
         }
  
     }
