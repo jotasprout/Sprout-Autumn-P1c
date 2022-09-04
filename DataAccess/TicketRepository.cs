@@ -20,7 +20,7 @@ public class TicketRepository : IticketDAO
         _connectionFactory = connectionFactory;
     }
 
-    public string thoseAll = "select * from AutumnERS.tickets;";
+    public string thoseAll = "select * from tickets;";
 
     public List<Ticket> GetTickets(string those)
     {
@@ -61,7 +61,7 @@ public class TicketRepository : IticketDAO
     {
         User userInQuestion = new UserRepository().GetUserByUserName(userIWantTicketsFor);
         int userID = userInQuestion.userID;
-        string byUserQueryWithID = "select * from AutumnERS.tickets where author_fk = " + userID + ";";
+        string byUserQueryWithID = "select * from tickets where author_fk = " + userID + ";";
         List<Ticket> TicketsFromPeepIWant = new List<Ticket>(); 
         GetTickets(byUserQueryWithID);
         return TicketsFromPeepIWant;
@@ -69,7 +69,7 @@ public class TicketRepository : IticketDAO
 
     public List<Ticket> GetTicketsByUserID(string userIWantTicketsFor)
     {
-        string byUserQueryWithID = "select * from AutumnERS.tickets where author_fk = " + userIWantTicketsFor + ";";
+        string byUserQueryWithID = "select * from tickets where author_fk = " + userIWantTicketsFor + ";";
         List<Ticket> TicketsFromPeepIWant = new List<Ticket>(); 
         GetTickets(byUserQueryWithID);
         return TicketsFromPeepIWant;
@@ -97,7 +97,7 @@ public class TicketRepository : IticketDAO
                 Console.WriteLine("What kind of nonsense was that?");
                 break;
         }         
-        string thoseStatusTickets = "select * from AutumnERS.tickets where status = '" + thisStatus + "';";
+        string thoseStatusTickets = "select * from tickets where status = '" + thisStatus + "';";
         List<Ticket> statusTickets = new List<Ticket>();
         GetTickets(thoseStatusTickets);
         return statusTickets;
@@ -105,7 +105,7 @@ public class TicketRepository : IticketDAO
 
     public List<Ticket> GrabTicketByTicketID(string ticketID)
     {
-        string byTicketID = "select * from AutumnERS.tickets where ticketID = " + ticketID + ";";
+        string byTicketID = "select * from tickets where ticketID = " + ticketID + ";";
         List<Ticket> ticketIWant = new List<Ticket>(); 
         GetTickets(byTicketID);
         return ticketIWant;        
@@ -137,9 +137,9 @@ public class TicketRepository : IticketDAO
                 break;
         } 
 
-        string updateTicketStatement = "UPDATE AutumnERS.tickets SET status = @status, resolver_fk = @myIDint WHERE ticketID = @ticketID;";
-        //string updateTicketStatement = "UPDATE AutumnERS.tickets SET status = '" + newStatus + "', resolver_fk =  WHERE ticketID = " + ticketID + ";";
-        // UPDATE AutumnERS.tickets SET status = 'Approved' WHERE ticketID = 16;
+        string updateTicketStatement = "UPDATE tickets SET status = @status, resolver_fk = @myIDint WHERE ticketID = @ticketID;";
+        //string updateTicketStatement = "UPDATE tickets SET status = '" + newStatus + "', resolver_fk =  WHERE ticketID = " + ticketID + ";";
+        // UPDATE tickets SET status = 'Approved' WHERE ticketID = 16;
         SqlConnection makeConnection = _connectionFactory.GetConnection();
         SqlCommand updateTicket = new SqlCommand(updateTicketStatement, makeConnection);
         
@@ -187,7 +187,7 @@ public class TicketRepository : IticketDAO
 
         List<Ticket> AllMyTickets = new List<Ticket>();
 
-        string createTicketSQL = "insert into AutumnERS.tickets (author_fk, description, amount) values (@author, @description, @amount);";
+        string createTicketSQL = "insert into tickets (author_fk, description, amount) values (@author, @description, @amount);";
 
         SqlConnection makeConnection = _connectionFactory.GetConnection();
         SqlCommand createThisTicket = new SqlCommand(createTicketSQL, makeConnection);
